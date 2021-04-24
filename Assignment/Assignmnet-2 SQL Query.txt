@@ -1,0 +1,41 @@
+CREATE DATABASE [CharliesManufacturer]
+
+
+CREATE TABLE [dbo].[Order] (
+[order_ID] float NOT NULL,
+[comp_ID] float NOT NULL,
+[supp_ID] float NOT NULL,
+[order_date] datetime NOT NULL,
+[quantity_order] float NOT NULL
+)
+
+
+CREATE TABLE [dbo].[Component] (
+[comp_ID] float,
+[comp_name] nvarchar(255),
+[description] nvarchar(255),
+[quantity_comp] float
+)
+
+
+CREATE TABLE [dbo].[Prod_Comp] (
+[prod_ID] float NOT NULL,
+[comp_ID] float NOT NULL,
+[quantity_comp] float NOT NULL
+)
+
+
+CREATE TABLE [dbo].[Product] (
+[prod_ID] float NOT NULL,
+[prod_name] nvarchar(255) NOT NULL,
+[quantity] float NOT NULL
+)
+
+
+CREATE TABLE [dbo].[Supplier] (
+[supp_ID] float NOT NULL,
+[supp_name] nvarchar(255) NOT NULL,
+[supp_location] nvarchar(255) NOT NULL,
+[supp_country] nvarchar(255) NOT NULL,
+[is_active] float NOT NULL
+)
