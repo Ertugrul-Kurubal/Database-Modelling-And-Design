@@ -1,0 +1,179 @@
+CREATE TABLE ORDER_TBL
+(
+ORDER_ID TINYINT NOT NULL,
+CUSTOMER_ID TINYINT NOT NULL,
+CUSTOMER_NAME VARCHAR(50),
+ORDER_DATE DATE,
+EST_DELIVERY_DATE DATE
+);
+
+INSERT ORDER_TBL VALUES (1, 1, 'Adam', GETDATE()-10, GETDATE()-5 ),
+						(2, 2, 'Smith',GETDATE()-8, GETDATE()-4 ),
+						(3, 3, 'John',GETDATE()-5, GETDATE()-2 ),
+						(4, 4, 'Jack',GETDATE()-3, GETDATE()+1 ),
+						(5, 5, 'Owen',GETDATE()-2, GETDATE()+3 ),
+						(6, 6, 'Mike',GETDATE(), GETDATE()+5 ),
+						(7, 6, 'Rafael',GETDATE(), GETDATE()+5 ),
+						(8, 7, 'Johnson',GETDATE(), GETDATE()+5 )
+
+CREATE TABLE ORDER_DELIVERY
+(
+ORDER_ID TINYINT NOT NULL,
+DELIVERY_DATE DATE
+);
+
+INSERT ORDER_DELIVERY VALUES (1, GETDATE()-6 ),
+						(2, GETDATE()-2 ),
+						(3, GETDATE()-2 ),
+						(4, GETDATE() ),
+						(5, GETDATE()+2 ),
+						(6, GETDATE()+3 ),
+						(7, GETDATE()+5 ),
+						(8, GETDATE()+5 )
+
+SELECT * FROM [dbo].[ORDER_DELIVERY]
+
+---------------------------
+
+CREATE PROC sp_sum_order
+AS
+BEGIN
+	SELECT COUNT (ORDER_ID) FROM ORDER_TBL
+END;
+
+ALTER PROC sp_sum_order
+AS
+BEGIN
+	SELECT COUNT (ORDER_ID) AS TOTAL_ORDER FROM ORDER_TBL
+END;
+
+EXEC sp_sum_order
+
+---------------------------
+
+CREATE PROC sp_watedday_order
+( 
+	@DAY DATE
+)
+AS
+BEGIN
+	SELECT COUNT (ORDER_ID)
+	FROM ORDER_TBL
+	WHERE ORDER_DATE = @DAY
+END;
+
+EXEC sp_watedday_order '2021-04-24'
+
+----------------------------
+
+DECLARE @P1 INT, @P2 INT, @SUM INT
+
+SET @P1 = 5
+SELECT @P2 - 4
+SELECT @SUM = @P1+@P2
+--OR--
+SET @SUM = @P1+@P2
+SELECT @SUM
+
+-----------------------------
+
+DECLARE @P1 INT, @P2 INT, @SUM INT ---
+
+SELECT @P1 - 3, @P2 - 7, @SUM = @P1 + @P2
+
+PRINT @SUM
+
+------------------------------
+
+DECLARE @CUST_ID INT = 2
+
+SELECT *
+FROM ORDER_TBL
+WHERE
+CUSTOMER_ID = @CUST_ID
+
+-------------------------------
+
+DECLARE @CUST_ID INT
+
+SET @CUST_ID = 4
+
+IF @CUST_ID>3
+	BEGIN
+		SELECT *
+		FROM ORDER_TBL
+		WHERE CUSTOMER_ID = @CUST_ID
+	END
+ELSE
+	PRINT 'THE CUSTOMER ID EQUAL TO 3'
+
+------------------------------
+
+DECLARE @NUM_OF_ITER INT = 50, @COUNTER INT = 0
+
+WHILE @NUM_OF_ITER > @COUNTER
+	BEGIN
+		SELECT @COUNTER
+		SET @COUNTER = @COUNTER+1
+	END
+
+------------------------------
+
+CREATE FUNCTION fnc_uppertext
+(
+	@inputtext varchar (50)
+)
+RETURNS VARCHAR (MAX)
+AS
+BEGIN
+	RETURN UPPER(@inputtext)
+END
+
+SELECT dbo.fnc_uppertext('whats up')
+
+------------------------------
+
+SELECT dbo.fnc_uppertext(CUSTOMER_NAME) FROM ORDER_TBL
+
+------------------------------
+
+CREATE FUNCTION dbo.statusofoerderdelivery
+(
+	@ORDER INT
+)
+RETURNS VARCHAR (10)
+AS
+BEGIN
+	DECLARE @EST_DATE DATE
+	DECLARE @DEL_DATE DATE
+	DECLARE @STATUS VARCHAR (10)
+
+	SELECT @EST_DATE = EST_DELIVERY_DATE FROM ORDER_TBL WHERE ORDER_ID = @ORDER
+
+	SET @DEL_DATE = (SELECT DELIVERY_DATE FROM ORDER_DELIVERY WHERE ORDER_ID = @ORDER
+
+	IF @EST_DATE < @DEL_DATE
+		SET @STATUS = 'LATE'
+	ELSE IF @EST_DATE > @DEL_DATE
+		SET @STATUS = 'EARLY'
+	ELSE
+		SET @STATUS = 'ON TIME'
+RETURN @STATUS
+END;
+
+-----------------------------------
+
+SELECT * FROM ORDER_TBL
+
+
+
+
+
+
+
+
+
+
+
+
+
