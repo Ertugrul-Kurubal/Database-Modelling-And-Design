@@ -1,0 +1,8 @@
+Author_ID,Author_Name
+1,Fyodor Dostoyevski
+2,Nikolay Vasilyeviç Gogol
+3,Maxim Gorki
+4,John Steinbeck
+5,Victor Hugo
+6,Charles Dickens
+7,Ivan Turgenyev
