@@ -4,6 +4,7 @@ CREATE DATABASE University;
 
 USE University;
 
+
 CREATE TABLE Register 
 (
 StudentID bigint,
@@ -15,6 +16,8 @@ RegisterDate date,
 PRIMARY KEY (StudentID)
 );
 
+
+
 CREATE TABLE Staff 
 (
 StaffID bigint,
@@ -24,6 +27,8 @@ Surname varchar(50),
 Job varchar(50)
 PRIMARY KEY (StaffID)
 );
+
+
 
 CREATE FUNCTION dbo.homework
 (
@@ -42,8 +47,6 @@ BEGIN
 RETURN @OUT
 END;
 
---------------------------------------------------------------------------------
-
 CREATE TABLE Course 
 (
 CourseID bigint PRIMARY KEY,
@@ -51,14 +54,28 @@ CourseID bigint PRIMARY KEY,
 Credit int,
 Homework int,
 Quota int,
-CONSTRAINT Homework CHECK(Homework < [dbo].[homework](Credit))
+CONSTRAINT homework_condition CHECK(Homework <= [dbo].[homework](Credit))
 );
 
-CREATE TABLE CourseScore 
+------------------------------------------------------
+/*CREATE FUNCTION dbo.score
+(
+	@NUM2 bigint
+)
+RETURNS INT
+AS
+BEGIN
+	DECLARE @OUT2 INT
+	SET @OUT2 = SELECT Homework FROM Course WHERE CourseID = (SELECT CourseID FROM CourseScore WHERE StudentID = @NUM2)
+RETURN @OUT2
+END;
+*/
+
+CREATE TABLE CourseScore   ----Adding Constraint for Score
 (
 CourseID bigint,
-CONSTRAINT StudentID bigint CHECK(),
-Score int
+StudentID bigint,
+Score int,
 FOREIGN KEY (CourseID) REFERENCES Course (CourseID),
 FOREIGN KEY (StudentID) REFERENCES Register (StudentID)
 );
@@ -74,11 +91,11 @@ BEGIN
 	DECLARE @STFLOC bigint
 	DECLARE @STAT bit
 	SET @STLOC = (SELECT [Location] FROM Register WHERE StudentID = @LOC)
-	SET @STFLOC = (SELECT [Location] FROM Staff WHERE StaffID = (SELECT StaffID FROM Conselor WHERE StudentID = @LOC)
+	SET @STFLOC = (SELECT [Location] FROM Staff WHERE StaffID = (SELECT StaffID FROM Conselor WHERE StudentID = @LOC))
 	IF @STLOC = @STFLOC
-		SET @STAT = TRUE
+		SET @STAT = 'TRUE'
 	ELSE
-		SET @STAT = FALSE
+		SET @STAT = 'FALSE'
 RETURN @STAT
 END;
 
@@ -86,8 +103,9 @@ END;
 CREATE TABLE Conselor 
 (
 StudentID bigint,
-CONSTRAINT StaffID bigint CHECK(dbo.loc(StudentID)),
-Region int
+StaffID bigint ,
+Region int,
+CONSTRAINT loc_condition CHECK(dbo.loc(StudentID)='TRUE'),
 FOREIGN KEY (StudentID) REFERENCES Register (StudentID),
 FOREIGN KEY (StaffID) REFERENCES Staff (StaffID)
 );
