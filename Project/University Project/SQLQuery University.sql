@@ -8,11 +8,11 @@ USE University;
 CREATE TABLE Register 
 (
 StudentID bigint,
-[Name] varchar(50),
-Surname varchar(50),
-RegisterDate int,
-[Date] date,
-[Location] nvarchar(50)
+[Name] varchar(50) NOT NULL,
+Surname varchar(50) NOT NULL,
+RegisterDate int NOT NULL,
+[Date] date NOT NULL,
+[Location] nvarchar(50) NOT NULL
 PRIMARY KEY (StudentID)
 );
 
@@ -20,11 +20,11 @@ PRIMARY KEY (StudentID)
 
 CREATE TABLE Staff 
 (
-StaffID bigint,
-[Name] varchar(50),
-Surname varchar(50),
-[Location] nvarchar(50),
-Job varchar(50)
+StaffID bigint NOT NULL,
+[Name] varchar(50) NOT NULL,
+Surname varchar(50) NOT NULL,
+[Location] nvarchar(50) NOT NULL,
+Job varchar(50) NOT NULL
 PRIMARY KEY (StaffID)
 );
 
