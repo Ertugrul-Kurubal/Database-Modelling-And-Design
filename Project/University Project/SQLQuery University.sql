@@ -157,6 +157,8 @@ FOREIGN KEY (StudentID) REFERENCES Register (StudentID),
 FOREIGN KEY (StaffID) REFERENCES Staff (StaffID)
 );
 
+SELECT * FROM Conselor
+
 CREATE TABLE CourseLecturer 
 (
 StaffID bigint,
