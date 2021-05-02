@@ -135,8 +135,8 @@ CREATE FUNCTION [dbo].[locations]
 RETURNS bigint
 AS
 BEGIN
-	DECLARE @STLOC bigint
-	DECLARE @STFLOC bigint
+	DECLARE @STLOC nvarchar
+	DECLARE @STFLOC nvarchar
 	DECLARE @STAT bigint
 	SET @STLOC = (SELECT [Location] FROM Register WHERE StudentID = @LOC)
 	SET @STFLOC = (SELECT [Location] FROM Staff WHERE StaffID = (SELECT StaffID FROM Conselor WHERE StudentID = @LOC))
@@ -151,7 +151,7 @@ CREATE TABLE Conselor
 (
 StudentID bigint,
 StaffID bigint ,
-Region int,
+Region varchar(50),
 CONSTRAINT loc_condition CHECK(StudentID = [dbo].[locations](StudentID)),
 FOREIGN KEY (StudentID) REFERENCES Register (StudentID),
 FOREIGN KEY (StaffID) REFERENCES Staff (StaffID)
@@ -230,6 +230,24 @@ VALUES (140, 10025012),
 		(406, 10025012),
 		(475, 40055011),
 		(452, 40055020)
+		;
+
+INSERT Conselor(StaffID,StudentID,Region)
+VALUES (10025012, 201910045, 'Wales'),
+		(10025012, 202110036, 'Wales'),
+		(10025013, 202110041, 'Wales'),
+		(20035005, 201910010, 'England'),
+		(20035005, 202110019, 'England'),
+		(20035010, 202010001, 'England'),
+		(20035010, 202010007, 'England'),
+		(30045005, 201910017, 'Scortland'),
+		(30045005, 201910043, 'Scortland'),
+		(30045013, 202010011, 'Scortland'),
+		(30045013, 202110020, 'Scortland'),
+		(30045019, 202110032, 'Scortland'),
+		(40055011, 201910024, 'Northern Ireland'),
+		(40055020, 202010023, 'Northern Ireland'),
+		(40055020, 202110015, 'Northern Ireland')
 		;
 
 INSERT 
