@@ -50,9 +50,9 @@ END;
 CREATE TABLE Course 
 (
 CourseID bigint PRIMARY KEY,
-[Name] varchar(20),
-Credit int,
-Homework int,
+[Name] varchar(20) NOT NULL,
+Credit int NOT NULL,
+Homework int NOT NULL,
 Quota int,
 CONSTRAINT homework_condition CHECK(Homework <= [dbo].[homework](CourseID))
 );
@@ -120,7 +120,7 @@ CREATE TABLE CourseScore
 (
 CourseID bigint,
 StudentID bigint,
-Score int,
+Score int NOT NULL,
 CONSTRAINT quota_condition CHECK(CourseID = [dbo].[quota](CourseID)),
 CONSTRAINT score_condition CHECK(Score <= [dbo].[score](StudentID)),
 CONSTRAINT credit_condition CHECK(StudentID = [dbo].[credits](StudentID)),
@@ -150,8 +150,8 @@ END;
 CREATE TABLE Conselor 
 (
 StudentID bigint,
-StaffID bigint ,
-Region varchar(50),
+StaffID bigint,
+Region varchar(50) NOT NULL,
 CONSTRAINT loc_condition CHECK(StudentID = [dbo].[locations](StudentID)),
 FOREIGN KEY (StudentID) REFERENCES Register (StudentID),
 FOREIGN KEY (StaffID) REFERENCES Staff (StaffID)
