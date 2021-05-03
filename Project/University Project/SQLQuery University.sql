@@ -159,6 +159,15 @@ FOREIGN KEY (StaffID) REFERENCES Staff (StaffID)
 
 SELECT * FROM Conselor
 
+INSERT INTO Conselor (StaffID,StaffID,Region)
+VALUES (201910010,20035005,'England')
+
+SELECT [Location] FROM Register WHERE StudentID = 201910010
+
+SELECT [Location] FROM Staff WHERE StaffID = 20035005
+
+					
+
 CREATE TABLE CourseLecturer 
 (
 StaffID bigint,
