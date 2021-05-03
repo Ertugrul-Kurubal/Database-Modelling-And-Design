@@ -128,9 +128,10 @@ FOREIGN KEY (CourseID) REFERENCES Course (CourseID),
 FOREIGN KEY (StudentID) REFERENCES Register (StudentID)
 );
 
-CREATE FUNCTION [dbo].[locations]
+CREATE FUNCTION [dbo].[location]
 (
-	@LOC bigint
+	@LOC bigint,
+	@LOC2 bigint
 )
 RETURNS bigint
 AS
@@ -139,9 +140,9 @@ BEGIN
 	DECLARE @STFLOC nvarchar
 	DECLARE @STAT bigint
 	SET @STLOC = (SELECT [Location] FROM Register WHERE StudentID = @LOC)
-	SET @STFLOC = (SELECT [Location] FROM Staff WHERE StaffID = (SELECT StaffID FROM Conselor WHERE StudentID = @LOC))
+	SET @STFLOC = (SELECT [Location] FROM Staff WHERE StaffID = @LOC2)
 	IF @STLOC = @STFLOC
-		SET @STAT = @LOC
+		SET @STAT = 1
 	ELSE
 		SET @STAT = 0
 RETURN @STAT
@@ -152,14 +153,14 @@ CREATE TABLE Conselor
 StudentID bigint,
 StaffID bigint,
 Region varchar(50) NOT NULL,
-CONSTRAINT loc_condition CHECK(StudentID = [dbo].[locations](StudentID)),
+CONSTRAINT loc_condition CHECK([dbo].[location](StudentID,StaffID) = 1),
 FOREIGN KEY (StudentID) REFERENCES Register (StudentID),
 FOREIGN KEY (StaffID) REFERENCES Staff (StaffID)
 );
 
 SELECT * FROM Conselor
 
-INSERT INTO Conselor (StaffID,StaffID,Region)
+INSERT INTO Conselor (StudentID,StaffID,Region)
 VALUES (201910010,20035005,'England')
 
 SELECT [Location] FROM Register WHERE StudentID = 201910010
