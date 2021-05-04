@@ -179,14 +179,19 @@ FOREIGN KEY (StudentID) REFERENCES Register (StudentID),
 FOREIGN KEY (StaffID) REFERENCES Staff (StaffID)
 );
 
+ALTER TABLE Conselor
+ADD CONSTRAINT check_location CHECK([dbo].[location](StudentID,StaffID) = 1);
+
 SELECT * FROM Conselor
 
-INSERT INTO Conselor (StudentID,StaffID,Region)
-VALUES (201910010,20035005,'England')
+SELECT [Location] FROM Register WHERE StudentID = 200350005
 
-SELECT [Location] FROM Register WHERE StudentID = 201910010
+SELECT * FROM Register
 
-SELECT [Location] FROM Staff WHERE StaffID = 20035005
+SELECT [Location] FROM Staff WHERE StaffID = 201910010
+
+SELECT * FROM Register
+SELECT * FROM Staff
 
 TRUNCATE TABLE Conselor; 
 
@@ -269,25 +274,28 @@ VALUES (140, 10025012),
 
 ---------------------------------------------- 
 
-INSERT Conselor(StaffID,StudentID,Region)
-VALUES  (10025012, 201910045, 'Wales'),
+INSERT Conselor(StudentID, StaffID,Region)
+VALUES  (201910010, 20035005, 'England'),
+		(10025012, 202110036, 'Wales'),
 		(10025013, 202110041, 'Wales'),
 		(20035005, 201910010, 'England'),
+		(20035005, 202110019, 'England'),
 		(20035010, 202010001, 'England'),
 		(20035010, 202010007, 'England'),
 		(30045005, 201910017, 'Scortland'),
+		(30045005, 201910043, 'Scortland'),
 		(30045013, 202010011, 'Scortland'),
 		(30045013, 202110020, 'Scortland'),
 		(30045019, 202110032, 'Scortland'),
 		(40055011, 201910024, 'Northern Ireland'),
+		--(40055020, 202010023, 'Northern Ireland'),
 		(40055020, 202110015, 'Northern Ireland')
 		;
 
 INSERT Conselor(StaffID,StudentID,Region)
-VALUES 	(10025012, 202110036, 'Wales'),
+VALUES 	(20035005, 201910010, 'England'),
 		(20035005, 202110019, 'England'),
-		(30045005, 201910043, 'Scortland'),
-		(40055020, 202010023, 'Northern Ireland')
+		(20035010, 202010001, 'England')
 
 INSERT CourseScore(CourseID, StudentID, Score)
 VALUES (140, 202110015, 370),
