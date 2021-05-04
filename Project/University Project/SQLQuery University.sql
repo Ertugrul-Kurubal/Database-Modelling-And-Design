@@ -212,6 +212,8 @@ TRUNCATE TABLE Conselor;
 
 DELETE FROM Conselor WHERE StudentID = 201910010
 
+DROP TABLE Conselor
+
 
 
 
@@ -307,7 +309,7 @@ VALUES  (201910010, 20035005, 'England'),
 -------------------------------------------------
 
 INSERT CourseScore(CourseID, StudentID, Score)
-VALUES (140, 202110015, 370),
+VALUES --(140, 202110015, 370),
 		(140, 202110019, 380),
 		(140, 202110020, 375),
 		(140, 202110032, 380),
