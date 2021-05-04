@@ -189,6 +189,8 @@ SELECT [Location] FROM Register WHERE StudentID = 201910010
 
 SELECT [Location] FROM Staff WHERE StaffID = 20035005
 
+TRUNCATE TABLE Conselor; 
+
 					
 
 CREATE TABLE CourseLecturer 
