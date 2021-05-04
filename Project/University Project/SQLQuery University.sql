@@ -276,26 +276,19 @@ VALUES (140, 10025012),
 
 INSERT Conselor(StudentID, StaffID,Region)
 VALUES  (201910010, 20035005, 'England'),
-		(10025012, 202110036, 'Wales'),
-		(10025013, 202110041, 'Wales'),
-		(20035005, 201910010, 'England'),
-		(20035005, 202110019, 'England'),
-		(20035010, 202010001, 'England'),
-		(20035010, 202010007, 'England'),
-		(30045005, 201910017, 'Scortland'),
-		(30045005, 201910043, 'Scortland'),
-		(30045013, 202010011, 'Scortland'),
-		(30045013, 202110020, 'Scortland'),
-		(30045019, 202110032, 'Scortland'),
-		(40055011, 201910024, 'Northern Ireland'),
-		--(40055020, 202010023, 'Northern Ireland'),
-		(40055020, 202110015, 'Northern Ireland')
+		(201910017, 30045005, 'Scortland'),
+		(201910024, 40055011, 'Northern Ireland'),
+		(201910043, 30045019, 'Scortland'),
+		(201910045, 10025013, 'Wales'),
+		(202010001, 20035005, 'England'),
+		(202010007, 20035010, 'England'),
+		(202010011, 30045013, 'Scortland'),
+		(202010023, 40055011, 'Northern Ireland'),
+		(202110015, 40055020, 'Northern Ireland')
 		;
 
-INSERT Conselor(StaffID,StudentID,Region)
-VALUES 	(20035005, 201910010, 'England'),
-		(20035005, 202110019, 'England'),
-		(20035010, 202010001, 'England')
+DROP 
+
 
 INSERT CourseScore(CourseID, StudentID, Score)
 VALUES (140, 202110015, 370),
