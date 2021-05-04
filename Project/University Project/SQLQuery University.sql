@@ -126,6 +126,8 @@ BEGIN
 RETURN @STAT4
 END;
 
+SELECT * FROM Course
+
 CREATE TABLE CourseScore 
 (
 CourseID bigint,
