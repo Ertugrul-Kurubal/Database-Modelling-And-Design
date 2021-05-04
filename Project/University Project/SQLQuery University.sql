@@ -128,6 +128,28 @@ FOREIGN KEY (CourseID) REFERENCES Course (CourseID),
 FOREIGN KEY (StudentID) REFERENCES Register (StudentID)
 );
 
+
+
+/*CREATE FUNCTION [dbo].[locations]
+(
+	@LOC bigint
+)
+RETURNS bigint
+AS
+BEGIN
+	DECLARE @STLOC nvarchar
+	DECLARE @STFLOC nvarchar
+	DECLARE @STAT bigint
+	SET @STLOC = (SELECT [Location] FROM Register WHERE StudentID = @LOC)
+	SET @STFLOC = (SELECT [Location] FROM Staff WHERE StaffID = (SELECT StaffID FROM Conselor WHERE StudentID = @LOC))  -- Bu satýrýn kullanýmý doðru mu? Hem Conselor tablosunu CHECK edip hem oradan ayný anda bilgi çekmek !!!
+	IF @STLOC = @STFLOC                                                                                                                                                                                       -- SQL de tabloya veri aktarýlýrken iþlem önceliði nasýl önce constrait mi kontrol ediliyor?
+		SET @STAT = @LOC
+	ELSE
+		SET @STAT = 0
+RETURN @STAT
+END;
+*/
+
 CREATE FUNCTION [dbo].[location]
 (
 	@LOC bigint,
