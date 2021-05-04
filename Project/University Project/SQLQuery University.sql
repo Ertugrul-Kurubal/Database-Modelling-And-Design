@@ -18,6 +18,8 @@ PRIMARY KEY (StudentID)
 
 
 
+
+
 CREATE TABLE Staff 
 (
 StaffID bigint NOT NULL,
@@ -27,6 +29,8 @@ Surname varchar(50) NOT NULL,
 Job varchar(50) NOT NULL
 PRIMARY KEY (StaffID)
 );
+
+
 
 
 
@@ -56,6 +60,12 @@ Homework int NOT NULL,
 Quota int,
 CONSTRAINT homework_condition CHECK(Homework <= [dbo].[homework](CourseID))
 );
+
+SELECT * FROM Course
+
+
+
+
 
 ------------------------------------------------------
 /*SELECT 100*SUM(C.Homework) FROM Register A 
@@ -130,6 +140,8 @@ FOREIGN KEY (StudentID) REFERENCES Register (StudentID)
 
 
 
+
+
 /*CREATE FUNCTION [dbo].[locations]
 (
 	@LOC bigint
@@ -182,6 +194,9 @@ FOREIGN KEY (StaffID) REFERENCES Staff (StaffID)
 ALTER TABLE Conselor
 ADD CONSTRAINT check_location CHECK([dbo].[location](StudentID,StaffID) = 1);
 
+INSERT Conselor(StudentID, StaffID,Region)
+VALUES  (201910010, 20035010, 'England')
+
 SELECT * FROM Conselor
 
 SELECT [Location] FROM Register WHERE StudentID = 200350005
@@ -195,7 +210,11 @@ SELECT * FROM Staff
 
 TRUNCATE TABLE Conselor; 
 
-					
+DELETE FROM Conselor WHERE StudentID = 201910010
+
+
+
+
 
 CREATE TABLE CourseLecturer 
 (
@@ -272,8 +291,6 @@ VALUES (140, 10025012),
 		(452, 40055020)
 		;
 
----------------------------------------------- 
-
 INSERT Conselor(StudentID, StaffID,Region)
 VALUES  (201910010, 20035005, 'England'),
 		(201910017, 30045005, 'Scortland'),
@@ -287,8 +304,7 @@ VALUES  (201910010, 20035005, 'England'),
 		(202110015, 40055020, 'Northern Ireland')
 		;
 
-DROP 
-
+-------------------------------------------------
 
 INSERT CourseScore(CourseID, StudentID, Score)
 VALUES (140, 202110015, 370),
