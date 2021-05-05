@@ -126,6 +126,13 @@ BEGIN
 RETURN @STAT4
 END;
 
+CREATE FUNCTION dbo.quota2
+(
+	@CorID bigint
+)
+RETURNS int
+AS
+
 SELECT * FROM Course
 
 CREATE TABLE CourseScore 
