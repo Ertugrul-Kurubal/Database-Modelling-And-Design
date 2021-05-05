@@ -136,13 +136,16 @@ BEGIN
 	DECLARE @STAT5 INT
 	DECLARE @OUT5 INT
 	DECLARE @OUT6 INT
-	SET @OUT5 = (SELECT Quota FROM Course WHERE CourseID = 140)
-	SET @OUT6 = (SELECT COUNT(CourseID) FROM CourseScore WHERE CourseID = 140)
-
+	SET @OUT5 = (SELECT Quota FROM Course WHERE CourseID = @CorID)
+	SET @OUT6 = (SELECT COUNT(CourseID) FROM CourseScore WHERE CourseID = @CorID)
+	IF @OUT6 <= @OUT5
+		SET @STAT5 = 1
+	ELSE
+		SET @STAT5 = 0
 RETURN @STAT5
 END;
 
-SELECT * FROM Course
+SELECT * FROM CourseScore
 
 CREATE TABLE CourseScore 
 (
@@ -157,6 +160,7 @@ FOREIGN KEY (StudentID) REFERENCES Register (StudentID)
 
 ALTER TABLE CourseScore
 ADD CONSTRAINT check_quota CHECK([dbo].[quota2](CourseID) = 1);
+
 
 
 
