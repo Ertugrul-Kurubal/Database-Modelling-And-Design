@@ -140,7 +140,8 @@ FOREIGN KEY (CourseID) REFERENCES Course (CourseID),
 FOREIGN KEY (StudentID) REFERENCES Register (StudentID)
 );
 
-
+ALTER TABLE CourseScore
+ADD CONSTRAINT check_quota CHECK([dbo].[quota](CourseID) = 1);
 
 
 
