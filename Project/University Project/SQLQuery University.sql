@@ -109,7 +109,7 @@ INNER JOIN CourseScore B ON A.CourseID = B.CourseID
 INNER JOIN Register C ON B.StudentID = C.StudentID 
 WHERE A.CourseID  = 141*/
 
-CREATE FUNCTION dbo.quota
+/*CREATE FUNCTION dbo.quota
 (
 	@NUM4 bigint
 )
@@ -125,8 +125,9 @@ BEGIN
 		SET @STAT4 = 0
 RETURN @STAT4
 END;
+*/
 
-CREATE FUNCTION dbo.quota2
+CREATE FUNCTION dbo.quota
 (
 	@CorID bigint
 )
@@ -152,14 +153,15 @@ CREATE TABLE CourseScore
 CourseID bigint,
 StudentID bigint,
 Score int NOT NULL,
-CONSTRAINT score_condition CHECK(Score <= [dbo].[score](StudentID)),
-CONSTRAINT credit_condition CHECK(StudentID = [dbo].[credits](StudentID)),
+--CONSTRAINT score_condition CHECK(Score <= [dbo].[score](StudentID)),
+--CONSTRAINT credit_condition CHECK(StudentID = [dbo].[credits](StudentID)),
 FOREIGN KEY (CourseID) REFERENCES Course (CourseID),
 FOREIGN KEY (StudentID) REFERENCES Register (StudentID)
 );
 
 ALTER TABLE CourseScore
-ADD CONSTRAINT check_quota CHECK([dbo].[quota2](CourseID) = 1);
+ADD CONSTRAINT check_quota CHECK([dbo].[quota](CourseID) = 1);
+
 
 
 
