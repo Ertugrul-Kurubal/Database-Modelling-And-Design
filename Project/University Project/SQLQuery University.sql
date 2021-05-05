@@ -133,7 +133,6 @@ CREATE TABLE CourseScore
 CourseID bigint,
 StudentID bigint,
 Score int NOT NULL,
-CONSTRAINT quota_condition CHECK(CourseID = [dbo].[quota](CourseID)),
 CONSTRAINT score_condition CHECK(Score <= [dbo].[score](StudentID)),
 CONSTRAINT credit_condition CHECK(StudentID = [dbo].[credits](StudentID)),
 FOREIGN KEY (CourseID) REFERENCES Course (CourseID),
