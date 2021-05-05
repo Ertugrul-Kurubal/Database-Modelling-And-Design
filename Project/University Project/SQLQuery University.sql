@@ -134,6 +134,10 @@ RETURNS int
 AS
 BEGIN
 	DECLARE @STAT5 INT
+	DECLARE @OUT5 INT
+	DECLARE @OUT6 INT
+	SET @OUT5 = (SELECT Quota FROM Course WHERE CourseID = @CorID)
+	SET @OUT6 = (SELECT COUNT(CourseID) FROM CourseScore WHERE CourseID = @CorID)
 
 RETURN @STAT5
 END;
@@ -152,7 +156,7 @@ FOREIGN KEY (StudentID) REFERENCES Register (StudentID)
 );
 
 ALTER TABLE CourseScore
-ADD CONSTRAINT check_quota CHECK([dbo].[quota](CourseID) = 1);
+ADD CONSTRAINT check_quota CHECK([dbo].[quota2](CourseID) = 1);
 
 
 
