@@ -1,0 +1,3 @@
+------ SET OPERATIONS ------
+-- UNION / UNION ALL
+-- Fairport þehrindeki müþteriler ile East Meadow þehrindeki müþterilerin soyisimlerini listeleyin
