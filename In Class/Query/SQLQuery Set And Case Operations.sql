@@ -10,6 +10,14 @@ SELECT last_name
 FROM [sales].[customers]
 WHERE city = 'East Meadow'
 
+SELECT last_name 
+FROM [sales].[customers]
+WHERE city = 'Fairport'
+UNION ALL
+SELECT last_name 
+FROM [sales].[customers]
+WHERE city = 'East Meadow'
+
 
 
 
