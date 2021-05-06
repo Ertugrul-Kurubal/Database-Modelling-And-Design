@@ -113,6 +113,20 @@ WHERE customer_id IN (SELECT customer_id FROM [sales].[orders]
 					WHERE YEAR(order_date) = 2018
 					)
 
+--2-way
+
+SELECT first_name, last_name FROM [sales].[customers]
+WHERE customer_id IN (SELECT customer_id FROM [sales].[orders]
+					WHERE order_date BETWEEN '2016-01-01' AND '2016-12-31'
+					INTERSECT
+					SELECT customer_id FROM [sales].[orders]
+					WHERE YEAR(order_date) = 2017
+					INTERSECT
+					SELECT customer_id FROM [sales].[orders]
+					WHERE DATEPART(year, order_date) = 2018
+					)
+
+
 
 
 
