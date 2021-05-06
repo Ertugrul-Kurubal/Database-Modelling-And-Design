@@ -234,6 +234,17 @@ SELECT *,
 FROM [sales].[staffs]
 ;
 
+SELECT *,
+		CASE 
+			WHEN manager_id IS NULL THEN 'Müdür'
+			ELSE 'Çalýþan'
+		END AS Class
+FROM [sales].[staffs]
+;
+
+
+
+
 
 
 
