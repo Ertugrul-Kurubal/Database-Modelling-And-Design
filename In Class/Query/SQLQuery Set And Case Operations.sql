@@ -43,12 +43,37 @@ SELECT first_name, last_name FROM [sales].[staffs]
 UNION ALL
 SELECT first_name, last_name FROM [sales].[customers]
 
+--Hangi kiþi iki defa listede gözüküyor 
 
+WITH t1 AS
+(
+SELECT first_name, last_name FROM [sales].[staffs]
+UNION ALL
+SELECT first_name, last_name FROM [sales].[customers]
+)
 
+SELECT first_name, last_name, count(*) freq
+FROM t1
+GROUP BY first_name, last_name
+HAVING count(*) = 2
 
+SELECT	store_name     --data type varchar(255) büyük data olaný yukarý yazmak daha mantýklý
+FROM	sales.stores   --ÇÜnkü birleþme iþlemi ilk tablonun adýný alarak oluþuyor eðer isimler farklý ise
+UNION
+SELECT	state          --data type varchar(25)
+FROM	sales.customers
+;
 
+SELECT CAST ('ALÝ' AS VARCHAR(3))
+UNION ALL
+SELECT CAST ('CELALETTIN' AS VARCHAR(10))
 
-
+SELECT	*
+FROM	production.brands
+UNION
+SELECT	*
+FROM	production.categories
+;
 
 
 
