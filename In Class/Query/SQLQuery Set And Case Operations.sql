@@ -209,9 +209,30 @@ SELECT *,
 FROM [sales].[staffs]
 ;
 
+------ SEARCHED CASE EXPRESSION -----
+-- Order status id lerinin açýklamalarýný yazdýrýnýz.
+-- 1 = Pending; 2 = Processing; 3 = Rejected; 4 = Completed
 
+SELECT *, 
+	CASE  
+		WHEN order_status = 1 THEN 'Pending'
+		WHEN order_status = 2 THEN 'Processing'
+		WHEN order_status = 3 THEN 'Rejected'
+		WHEN order_status = 4 THEN 'Completed'
+		ELSE 'Undefined'
+	END AS order_def
+FROM [sales].[orders]
+;
 
-
+SELECT *, 
+		CASE 
+			WHEN store_id = 1 THEN 'Santa Cruz Bikes'
+			WHEN store_id = 2 THEN 'Baldwin Bikes'
+			WHEN store_id = 3 THEN 'Rowlett Bikes'
+			ELSE 'Undefined'
+		END AS store_name
+FROM [sales].[staffs]
+;
 
 
 
