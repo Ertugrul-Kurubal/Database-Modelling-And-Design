@@ -75,10 +75,43 @@ SELECT	*
 FROM	production.categories
 ;
 
+-- INTERSECT / EXCEPT
+-- Hangi marka bisikletlerin hem 2016 hem de 2017 modelleri bulunmaktadýr?
+-- brand_id ve brand_name deðerlerini listeleyin
 
+SELECT brand_id FROM [production].[products]
+WHERE model_year = 2016
+INTERSECT
+SELECT brand_id FROM [production].[products]
+WHERE model_year = 2017
 
+SELECT brand_id, brand_name 
+FROM [production].[brands]
+WHERE brand_id IN (SELECT brand_id FROM [production].[products]
+					WHERE model_year = 2016
+					INTERSECT
+					SELECT brand_id FROM [production].[products]
+					WHERE model_year = 2017
+					)
 
+SELECT	brand_id --, COUNT(DISTINCT model_year) f_model_year
+FROM	production.products
+WHERE	model_year IN (2016, 2017)
+GROUP BY brand_id
+HAVING	COUNT(DISTINCT model_year) = 2;
 
+-- Hem 2016, hem 2017 hem de 2018 yýllarýnda sipariþ veren müþterileri listeleyiniz.
+
+SELECT first_name, last_name FROM [sales].[customers]
+WHERE customer_id IN (SELECT customer_id FROM [sales].[orders]
+					WHERE YEAR(order_date) = 2016
+					INTERSECT
+					SELECT customer_id FROM [sales].[orders]
+					WHERE YEAR(order_date) = 2017
+					INTERSECT
+					SELECT customer_id FROM [sales].[orders]
+					WHERE YEAR(order_date) = 2018
+					)
 
 
 
