@@ -242,17 +242,103 @@ SELECT *,
 FROM [sales].[staffs]
 ;
 
+-- Ürünlerin kargoya verilme hýzýný yazdýracaðýz.
+-- Kargoya verilmeyen sipariþler için 'Ürün kargoya verilmedi'
+-- Sipariþ günü kargoya verilen sipariþler 'hýzlý',
+-- En geç 2 gün içinde kargoya verilenler 'normal'
+-- 3 gün veya daha sonra kargoya verilenler 'yavaþ'olacak þekilde yeni bir attribute oluþturun.
+-- Bu case iþlemini simple case ile yapabilir miyiz?
+
+SELECT *,
+		CASE 
+			WHEN shipped_date IS NULL THEN 'Ürün Kargoya Verilmedi'
+			WHEN order_date = shipped_date THEN 'Hýzlý'
+			WHEN DATEDIFF (DAY, order_date, shipped_date) < 3 THEN 'Normal'
+			WHEN DATEDIFF (DAY, order_date, shipped_date) >= 3 THEN 'Yavaþ'
+			ELSE 'Diðer'
+		END AS Kargo_Hýzý
+FROM [sales].[orders]
+
+SELECT A.Kargo_Hýzý, COUNT(*) Sipariþ_Sayýsý, 
+COUNT(DISTINCT A.customer_id) Farklý_Müþteri
+FROM (SELECT *,
+		CASE 
+			WHEN shipped_date IS NULL THEN 'Ürün Kargoya Verilmedi'
+			WHEN order_date = shipped_date THEN 'Hýzlý'
+			WHEN DATEDIFF (DAY, order_date, shipped_date) < 3 THEN 'Normal'
+			WHEN DATEDIFF (DAY, order_date, shipped_date) >= 3 THEN 'Yavaþ'
+			ELSE 'Diðer'
+		END AS Kargo_Hýzý
+		FROM [sales].[orders]
+		) A
+GROUP BY A.Kargo_Hýzý
+
+-- Ayný sipariþte hem 'Electric Bikes' hem 'Comfort Bicycles' hem de 'Children Bicycles' alan müþterileri listeleyin.
+-- Müþterinin Adý, soyadý, order_id ve order_date alanlarýný listeleyin.
+
+SELECT A.order_id, A.product_id, B.product_id
+FROM [sales].[order_items] A, [production].[products] B
+WHERE A.product_id = B.product_id
+
+SELECT category_id
+FROM [production].[categories]
+WHERE category_name = 'Electric Bikes'
 
 
+---------
 
+SELECT A.order_id
+FROM [sales].[order_items] A, [production].[products] B
+WHERE A.product_id = B.product_id AND
+	  B.category_id = (SELECT category_id
+		FROM [production].[categories]
+		WHERE category_name = 'Electric Bikes'
+		)
+INTERSECT
+SELECT A.order_id
+FROM [sales].[order_items] A, [production].[products] B
+WHERE A.product_id = B.product_id AND
+	  B.category_id = (SELECT category_id
+		FROM [production].[categories]
+		WHERE category_name = 'Comfort Bicycles'
+		)
+INTERSECT
+SELECT A.order_id
+FROM [sales].[order_items] A, [production].[products] B
+WHERE A.product_id = B.product_id AND
+	  B.category_id = (SELECT category_id
+		FROM [production].[categories]
+		WHERE category_name = 'Children Bicycles'
+		)
 
-
-
-
-
-
-
-
+SELECT A.first_name, A.last_name, B.order_id, B.order_date
+FROM [sales].[customers] A, [sales].[orders] B
+WHERE A.customer_id = B.customer_id AND 
+      B.order_id IN (SELECT A.order_id
+                     FROM [sales].[order_items] A, [production].[products] B
+                     WHERE A.product_id = B.product_id AND
+	                       B.category_id = (SELECT category_id
+		                     FROM [production].[categories]
+		                     WHERE category_name = 'Electric Bikes'
+		                     )
+                     INTERSECT
+                     SELECT A.order_id
+                     FROM [sales].[order_items] A, [production].[products] B
+                     WHERE A.product_id = B.product_id AND
+	                       B.category_id = (SELECT category_id
+		                     FROM [production].[categories]
+		                     WHERE category_name = 'Comfort Bicycles'
+		                     )
+                     INTERSECT
+                     SELECT A.order_id
+                     FROM [sales].[order_items] A, [production].[products] B
+                     WHERE A.product_id = B.product_id AND
+	                       B.category_id = (SELECT category_id
+		                     FROM [production].[categories]
+		                     WHERE category_name = 'Children Bicycles'
+		                     )
+							 )
+	                    
 
 
 
