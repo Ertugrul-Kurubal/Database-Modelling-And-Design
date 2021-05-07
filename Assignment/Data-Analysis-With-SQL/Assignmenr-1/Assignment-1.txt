@@ -1,0 +1,118 @@
+1)
+WITH factorial_func (step, factorial) AS
+		(SELECT 1, 1
+		UNION ALL
+		SELECT step + 1, (step + 1) * factorial
+		FROM factorial_func
+		WHERE step < 6 
+		)
+		
+SELECT step, factorial
+FROM factorial_func
+;
+2)
+SELECT a.User_id, b.Publish_rate, b.Cancel_rate 
+FROM users a , Desired_id b 
+WHERE a.User_id = b.User_id
+GROUP BY a.User_id
+
+a)
+WITH users (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+)
+
+SELECT * FROM users
+
+b)
+WITH users (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+)
+
+SELECT User_id,[Action],COUNT([Action]) 
+FROM users
+GROUP BY User_id, [Action]
+
+c)
+WITH users (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+)
+SELECT User_id, 1.0*SUM([Action] = 'Publish')/SUM([Action] = 'Start') AS Publish_rate, 1.0*SUM([Action] = 'Cancel')/SUM([Action] = 'Start') AS Cancel_rate
+FROM users	
+GROUP BY  User_id
+
+-- 2-way
+/*
+WITH users2 (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+),
+Desired_output2  AS(
+SELECT User_id, 
+SUM(CASE WHEN [Action] = 'Start' THEN 1.0 ELSE 0.0 END) AS start_num,
+SUM(CASE WHEN [Action] = 'Cancel' THEN 1.0 ELSE 0.0 END) AS cancel_num,
+SUM(CASE WHEN [Action] = 'Publish' THEN 1.0 ELSE 0.0 END) AS publish_num
+FROM users2
+GROUP BY User_id
+)
+SELECT User_id, 1*(publish_num/start_num) AS Publish_rate2, 1*(cancel_num/start_num)
+FROM Desired_output2
+/*
