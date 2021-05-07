@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Ertuğrul/Desktop/Yeni klasör/ad.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="742"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,13:mainAction_Number"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Action_Number" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths/><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sqlb_project&gt;&lt;db path=&quot;C:/Users/Ertuğrul/Desktop/Yeni klasör/ad.db&quot; readonly=&quot;0&quot; foreign_keys=&quot;1&quot; case_sensitive_like=&quot;0&quot; temp_store=&quot;0&quot; wal_autocheckpoint=&quot;1000&quot; synchronous=&quot;2&quot;/&gt;&lt;attached/&gt;&lt;window&gt;&lt;main_tabs open=&quot;structure browser pragmas query&quot; current=&quot;3&quot;/&gt;&lt;/window&gt;&lt;tab_structure&gt;&lt;column_width id=&quot;0&quot; width=&quot;300&quot;/&gt;&lt;column_width id=&quot;1&quot; width=&quot;0&quot;/&gt;&lt;column_width id=&quot;2&quot; width=&quot;100&quot;/&gt;&lt;column_width id=&quot;3&quot; width=&quot;742&quot;/&gt;&lt;column_width id=&quot;4&quot; width=&quot;0&quot;/&gt;&lt;expanded_item id=&quot;0&quot; parent=&quot;1&quot;/&gt;&lt;expanded_item id=&quot;1&quot; parent=&quot;1&quot;/&gt;&lt;expanded_item id=&quot;2&quot; parent=&quot;1&quot;/&gt;&lt;expanded_item id=&quot;3&quot; parent=&quot;1&quot;/&gt;&lt;/tab_structure&gt;&lt;tab_browse&gt;&lt;current_table name=&quot;4,10:mainDesired_id&quot;/&gt;&lt;default_encoding codec=&quot;&quot;/&gt;&lt;browse_table_settings/&gt;&lt;/tab_browse&gt;&lt;tab_sql&gt;&lt;sql name=&quot;SQL 1&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;lt;sqlb_project&amp;gt;&amp;lt;db path=&amp;quot;C:/Users/Ertuğrul/Desktop/Yeni klasör/ad.db&amp;quot; readonly=&amp;quot;0&amp;quot; foreign_keys=&amp;quot;1&amp;quot; case_sensitive_like=&amp;quot;0&amp;quot; temp_store=&amp;quot;0&amp;quot; wal_autocheckpoint=&amp;quot;1000&amp;quot; synchronous=&amp;quot;2&amp;quot;/&amp;gt;&amp;lt;attached/&amp;gt;&amp;lt;window&amp;gt;&amp;lt;main_tabs open=&amp;quot;structure browser pragmas query&amp;quot; current=&amp;quot;3&amp;quot;/&amp;gt;&amp;lt;/window&amp;gt;&amp;lt;tab_structure&amp;gt;&amp;lt;column_width id=&amp;quot;0&amp;quot; width=&amp;quot;300&amp;quot;/&amp;gt;&amp;lt;column_width id=&amp;quot;1&amp;quot; width=&amp;quot;0&amp;quot;/&amp;gt;&amp;lt;column_width id=&amp;quot;2&amp;quot; width=&amp;quot;100&amp;quot;/&amp;gt;&amp;lt;column_width id=&amp;quot;3&amp;quot; width=&amp;quot;719&amp;quot;/&amp;gt;&amp;lt;column_width id=&amp;quot;4&amp;quot; width=&amp;quot;0&amp;quot;/&amp;gt;&amp;lt;expanded_item id=&amp;quot;0&amp;quot; parent=&amp;quot;1&amp;quot;/&amp;gt;&amp;lt;expanded_item id=&amp;quot;1&amp;quot; parent=&amp;quot;1&amp;quot;/&amp;gt;&amp;lt;expanded_item id=&amp;quot;2&amp;quot; parent=&amp;quot;1&amp;quot;/&amp;gt;&amp;lt;expanded_item id=&amp;quot;3&amp;quot; parent=&amp;quot;1&amp;quot;/&amp;gt;&amp;lt;/tab_structure&amp;gt;&amp;lt;tab_browse&amp;gt;&amp;lt;current_table name=&amp;quot;4,10:mainDesired_id&amp;quot;/&amp;gt;&amp;lt;default_encoding codec=&amp;quot;&amp;quot;/&amp;gt;&amp;lt;browse_table_settings/&amp;gt;&amp;lt;/tab_browse&amp;gt;&amp;lt;tab_sql&amp;gt;&amp;lt;sql name=&amp;quot;SQL 1&amp;quot;&amp;gt;&amp;amp;lt;?xml version=&amp;amp;quot;1.0&amp;amp;quot; encoding=&amp;amp;quot;UTF-8&amp;amp;quot;?&amp;amp;gt;&amp;amp;lt;sqlb_project&amp;amp;gt;&amp;amp;lt;db path=&amp;amp;quot;C:/Users/Ertuğrul/Desktop/Yeni klasör/ad.db&amp;amp;quot; readonly=&amp;amp;quot;0&amp;amp;quot; foreign_keys=&amp;amp;quot;1&amp;amp;quot; case_sensitive_like=&amp;amp;quot;0&amp;amp;quot; temp_store=&amp;amp;quot;0&amp;amp;quot; wal_autocheckpoint=&amp;amp;quot;1000&amp;amp;quot; synchronous=&amp;amp;quot;2&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;attached/&amp;amp;gt;&amp;amp;lt;window&amp;amp;gt;&amp;amp;lt;main_tabs open=&amp;amp;quot;structure browser pragmas query&amp;amp;quot; current=&amp;amp;quot;3&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;/window&amp;amp;gt;&amp;amp;lt;tab_structure&amp;amp;gt;&amp;amp;lt;column_width id=&amp;amp;quot;0&amp;amp;quot; width=&amp;amp;quot;300&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;column_width id=&amp;amp;quot;1&amp;amp;quot; width=&amp;amp;quot;0&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;column_width id=&amp;amp;quot;2&amp;amp;quot; width=&amp;amp;quot;100&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;column_width id=&amp;amp;quot;3&amp;amp;quot; width=&amp;amp;quot;719&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;column_width id=&amp;amp;quot;4&amp;amp;quot; width=&amp;amp;quot;0&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;expanded_item id=&amp;amp;quot;0&amp;amp;quot; parent=&amp;amp;quot;1&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;expanded_item id=&amp;amp;quot;1&amp;amp;quot; parent=&amp;amp;quot;1&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;expanded_item id=&amp;amp;quot;2&amp;amp;quot; parent=&amp;amp;quot;1&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;expanded_item id=&amp;amp;quot;3&amp;amp;quot; parent=&amp;amp;quot;1&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;/tab_structure&amp;amp;gt;&amp;amp;lt;tab_browse&amp;amp;gt;&amp;amp;lt;current_table name=&amp;amp;quot;4,10:mainDesired_id&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;default_encoding codec=&amp;amp;quot;&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;browse_table_settings&amp;amp;gt;&amp;amp;lt;table schema=&amp;amp;quot;main&amp;amp;quot; name=&amp;amp;quot;Desired_id&amp;amp;quot; show_row_id=&amp;amp;quot;0&amp;amp;quot; encoding=&amp;amp;quot;&amp;amp;quot; plot_x_axis=&amp;amp;quot;&amp;amp;quot; unlock_view_pk=&amp;amp;quot;_rowid_&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;sort/&amp;amp;gt;&amp;amp;lt;column_widths&amp;amp;gt;&amp;amp;lt;column index=&amp;amp;quot;1&amp;amp;quot; value=&amp;amp;quot;56&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;column index=&amp;amp;quot;2&amp;amp;quot; value=&amp;amp;quot;89&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;column index=&amp;amp;quot;3&amp;amp;quot; value=&amp;amp;quot;86&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;/column_widths&amp;amp;gt;&amp;amp;lt;filter_values/&amp;amp;gt;&amp;amp;lt;conditional_formats/&amp;amp;gt;&amp;amp;lt;row_id_formats/&amp;amp;gt;&amp;amp;lt;display_formats/&amp;amp;gt;&amp;amp;lt;hidden_columns/&amp;amp;gt;&amp;amp;lt;plot_y_axes/&amp;amp;gt;&amp;amp;lt;global_filter/&amp;amp;gt;&amp;amp;lt;/table&amp;amp;gt;&amp;amp;lt;/browse_table_settings&amp;amp;gt;&amp;amp;lt;/tab_browse&amp;amp;gt;&amp;amp;lt;tab_sql&amp;amp;gt;&amp;amp;lt;sql name=&amp;amp;quot;SQL 1&amp;amp;quot;&amp;amp;gt;--ASSIGNMENT-1
+--Q1
+WITH factorial_func (step, factorial) AS
+		(SELECT 1, 1
+		UNION ALL
+		SELECT step + 1, (step + 1) * factorial
+		FROM factorial_func
+		WHERE step &amp;amp;lt; 6 
+		)		
+SELECT step, factorial
+FROM factorial_func
+;
+--Q2 Table
+CREATE TABLE Desired_id (
+User_id int PRIMARY KEY,
+Publish_rate int,
+Cancel_rate INT
+);
+INSERT INTO Desired_id (User_id, Publish_rate, Cancel_rate)
+VALUES (1,0.5,0.5),
+		(2,0.5,0.0),
+		(3,0.0,1.0)
+;
+CREATE TABLE users2 (
+User_id int,
+[Action] varchar,
+[date] date
+FOREIGN KEY (User_id) REFERENCES Desired_id(User_id)
+/*DROP TABLE users*/
+INSERT INTO users (User_id, [Action], [date])
+VALUES (1, 'Start', '2020-01-01'),
+		(1, 'Cancel','2020-02-01'),
+		(2, 'Start', '2020-03-01'),
+		(2, 'Publish', '2020-04-01'),
+		(3, 'Start', '2020-05-01'),
+		(3, 'Cancel', '2020-06-01'),
+		(1, 'Start', '2020-07-01'),
+		(1, 'Publish', '2020-08-01')
+;
+SELECT * FROM users 
+SELECT * FROM Desired_id
+--Q2 
+SELECT a.User_id, b.Publish_rate, b.Cancel_rate FROM users a , Desired_id b 
+WHERE a.User_id = b.User_id
+GROUP BY a.User_id
+--a.WITH users2 (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+)
+
+SELECT * FROM users2
+
+--b.
+
+WITH users2 (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+)
+CREATE VIEW Action_Number AS
+SELECT User_id,[Action],COUNT([Action]) AS Number FROM usersGROUP BY User_id, [Action]
+WITH Desired (User_id, Publish, Cancel) AS (
+	SELECT User_id, 1.0*COUNT([Action] = 'Publish')/COUNT([Action] = 'Start'), 1.0*COUNT([Action] = 'Cancel')/COUNT([Action] = 'Start')
+	FROM users
+	GROUP BY User_id
+	)SELECT * FROM Desired
+
+SELECT User_id, 1.0*SUM([Action] = 'Publish')/SUM([Action] = 'Start'), 1.0*SUM([Action] = 'Cancel')/SUM([Action] = 'Start')
+FROM users	
+GROUP BY  User_id
+	
+SELECT (INT(SELECT Number FROM Action_Number WHERE User_id = 1 AND Action = 'Cancel')/INT(SELECT Number FROM Action_NumberWHERE User_id = 1 AND Action = 'Cancel'))*1.0
+
+SET @Start = SELECT Number FROM Action_Number WHERE User_id = 1 AND Action = 'Start'
+SELECT Number/@Start FROM Action_Number WHERE User_id = 1 AND Action = 'Cancel'
+--c
+WITH users2 (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+),
+Desired_output2  AS(
+SELECT User_id, 
+SUM(CASE WHEN [Action] = 'Start' THEN 1.0 ELSE 0.0 END) AS start_num,
+SUM(CASE WHEN [Action] = 'Cancel' THEN 1.0 ELSE 0.0 END) AS cancel_num,
+SUM(CASE WHEN [Action] = 'Publish' THEN 1.0 ELSE 0.0 END) AS publish_num
+FROM users2
+GROUP BY User_id
+)
+SELECT User_id, 1*(publish_num/start_num) AS Publish_rate2, 1*(cancel_num/start_num)
+FROM Desired_output2
+
+--2-way
+
+
+
+
+
+WITH Desired_output2  AS(
+SELECT User_id, 
+SUM(CASE WHEN [Action] = 'Start' THEN 1.0 ELSE 0.0 END) AS start_num,
+SUM(CASE WHEN [Action] = 'Cancel' THEN 1.0 ELSE 0.0 END) AS cancel_num,
+SUM(CASE WHEN [Action] = 'Publish' THEN 1.0 ELSE 0.0 END) AS publish_num
+FROM users
+GROUP BY User_id
+)SELECT *
+FROM Desired_output2 
+
+
+
+
+WITH users2 (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+),
+WITH users (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+)
+
+SELECT User_id,[Action],COUNT([Action]) 
+FROM users
+GROUP BY User_id, [Action]
+WITH users (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+)
+SELECT * FROM users
+
+
+WITH Desired_output  (User_id, Publish_rate, Cancel_rate AS (
+SELECT User_id, 1.0*SUM([Action] = 'Publish')/SUM([Action] = 'Start'), 1.0*SUM([Action] = 'Cancel')/SUM([Action] = 'Start')
+FROM users	
+GROUP BY  User_id
+)
+SELECT * FROM Desired_output
+
+WITH users (User_id, [Action], [date]) AS 
+(
+SELECT 1, 'Start', '2020-01-01'
+UNION ALL
+SELECT 1, 'Cancel','2020-02-01'
+UNION ALL
+SELECT 2, 'Start', '2020-03-01'
+UNION ALL
+SELECT 2, 'Publish', '2020-04-01'
+UNION ALL
+SELECT 3, 'Start', '2020-05-01'
+UNION ALL
+SELECT 3, 'Cancel', '2020-06-01'
+UNION ALL 
+SELECT 1, 'Start', '2020-07-01'
+UNION ALL
+SELECT 1, 'Publish', '2020-08-01'
+)
+SELECT User_id, 1.0*SUM([Action] = 'Publish')/SUM([Action] = 'Start') AS Publish_rate, 1.0*SUM([Action] = 'Cancel')/SUM([Action] = 'Start') AS Cancel_rate
+FROM users	
+GROUP BY  User_id
+
+
+
+&amp;amp;lt;/sql&amp;amp;gt;&amp;amp;lt;current_tab id=&amp;amp;quot;0&amp;amp;quot;/&amp;amp;gt;&amp;amp;lt;/tab_sql&amp;amp;gt;&amp;amp;lt;/sqlb_project&amp;amp;gt;
+&amp;lt;/sql&amp;gt;&amp;lt;current_tab id=&amp;quot;0&amp;quot;/&amp;gt;&amp;lt;/tab_sql&amp;gt;&amp;lt;/sqlb_project&amp;gt;
+&lt;/sql&gt;&lt;current_tab id=&quot;0&quot;/&gt;&lt;/tab_sql&gt;&lt;/sqlb_project&gt;
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
