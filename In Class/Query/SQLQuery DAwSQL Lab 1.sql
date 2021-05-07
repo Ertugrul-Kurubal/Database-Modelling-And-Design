@@ -10,7 +10,19 @@
  FROM T1
  )
  SELECT * FROM T2
-
+ 
+ --Recursive
+ 
+ WITH T1
+ AS
+ (
+ SELECT 1 AS NUMBER
+ UNION ALL
+ SELECT NUMBER*2
+ FROM T1
+ WHERE NUMBER < 20
+ )
+ SELECT * FROM T1
 
 
 
