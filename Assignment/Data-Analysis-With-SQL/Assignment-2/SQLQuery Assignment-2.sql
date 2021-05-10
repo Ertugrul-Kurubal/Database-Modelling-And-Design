@@ -3,23 +3,22 @@
 --Assignment-2
 
 --Q1
-WITH users (User_id, [Action], [date]) AS 
+WITH transactions (
+ SELECT * 
+ FROM 
+ (
+ VALUES(
+ (1, 'Start', CAST('01-01-20' AS date),
+ (1, 'Cancel', CAST('01-02-20' AS date),
+ (2, 'Start', CAST('01-03-20' AS date),
+ (2, 'Publish', CAST('01-04-20' AS date),
+ (3, 'Start', CAST('01-05-20' AS date),
+ (3, 'Cancel', CAST('01-06-20' AS date),
+ (1, 'Start', CAST('01-07-20' AS date),
+ (1, 'Publish', CAST('01-08-20' AS date)
+  AS Table_1 ([user_id], [action], [date])(sender, receiver, amount, transaction-date) AS 
 (
-SELECT 1, 'Start', '2020-01-01'
-UNION ALL
-SELECT 1, 'Cancel','2020-02-01'
-UNION ALL
-SELECT 2, 'Start', '2020-03-01'
-UNION ALL
-SELECT 2, 'Publish', '2020-04-01'
-UNION ALL
-SELECT 3, 'Start', '2020-05-01'
-UNION ALL
-SELECT 3, 'Cancel', '2020-06-01'
-UNION ALL 
-SELECT 1, 'Start', '2020-07-01'
-UNION ALL
-SELECT 1, 'Publish', '2020-08-01'
+
 )
 
 
