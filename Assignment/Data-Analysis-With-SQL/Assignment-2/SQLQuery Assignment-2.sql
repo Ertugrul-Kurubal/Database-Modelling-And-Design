@@ -23,8 +23,8 @@ WITH transactions  AS
 Table_2 AS
 		(
 		SELECT [sender],
-		SUM(CASE WHEN [sender] = 1 THEN amount ELSE 0 END) as U1,
-		SUM(CASE WHEN [sender] = 2 THEN amount ELSE 0 END) as U2
+		(SUM(CASE WHEN [sender] = receiver  THEN amount ELSE 0 END) -
+		SUM(CASE WHEN receiver = [sender] THEN amount ELSE 0 END)) as Net_Change
 		FROM transactions
 		GROUP BY [sender]
 		) 
