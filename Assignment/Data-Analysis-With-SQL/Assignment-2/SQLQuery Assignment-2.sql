@@ -20,17 +20,28 @@ WITH transactions  AS
 			)
 		AS Table_1 ([sender], receiver, amount, [transaction-date]) 
 ),
-Table_2 AS
+debit AS
 		(
-		SELECT [sender],
-		(SUM(CASE WHEN [sender] = receiver  THEN amount ELSE 0 END) -
-		SUM(CASE WHEN receiver = [sender] THEN amount ELSE 0 END)) as Net_Change
+		SELECT [sender] as [user],
+		SUM(CASE WHEN [sender] = [sender]  THEN amount ELSE 0 END) as debit
 		FROM transactions
 		GROUP BY [sender]
+		),
+credit AS
+		(
+		SELECT receiver as [user],		
+		SUM(CASE WHEN receiver = receiver THEN amount ELSE 0 END) as credit
+		FROM transactions
+		GROUP BY receiver
 		) 
+--????
+SELECT a.user
+FROM debit a
+FULL OUTER credit b
+ON 
 
-SELECT *  
-FROM Table_2
+
+
 
 
 --Q2
