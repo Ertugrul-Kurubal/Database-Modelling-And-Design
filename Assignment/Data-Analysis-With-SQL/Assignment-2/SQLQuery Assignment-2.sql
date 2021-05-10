@@ -20,13 +20,18 @@ WITH transactions  AS
 			)
 		AS Table_1 ([sender], receiver, amount, [transaction-date]) 
 ),
-Table_2 AS 
+Table_2 AS
 		(
-		SELECT
+		SELECT [sender],
+		SUM(CASE WHEN [sender] = 1 THEN amount ELSE 0 END) as U1,
+		SUM(CASE WHEN [sender] = 2 THEN amount ELSE 0 END) as U2
+		FROM transactions
+		GROUP BY [sender]
+		) 
 
+SELECT *  
+FROM Table_2
 
-SELECT * 
-FROM transactions
 
 --Q2
 
