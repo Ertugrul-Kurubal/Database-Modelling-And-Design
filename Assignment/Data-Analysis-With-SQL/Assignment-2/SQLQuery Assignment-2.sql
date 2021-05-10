@@ -19,9 +19,17 @@ WITH transactions  AS
 			(1, 4, 5,  CAST('02-16-20' AS date))
 			)
 		AS Table_1 ([sender], receiver, amount, [transaction-date]) 
-)
+),
+Table_2 AS 
+		(
+		SELECT
+
+
 SELECT * 
 FROM transactions
+
+--Q2
+
 
 
 
