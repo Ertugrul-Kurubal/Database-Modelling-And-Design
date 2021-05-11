@@ -34,11 +34,12 @@ credit AS
 		FROM transactions
 		GROUP BY receiver
 		) 
---????
-SELECT a.user
+
+SELECT *
 FROM debit a
-FULL OUTER credit b
-ON 
+FULL OUTER JOIN credit b
+ON a.[user] = b.[user]
+
 
 
 
