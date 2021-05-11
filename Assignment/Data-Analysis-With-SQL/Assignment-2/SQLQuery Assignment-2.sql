@@ -64,8 +64,23 @@ WITH attendance  AS
 			(4, CAST('04-05-20' AS date), 1)
 			)
 		AS Table_1 (student_id, school_date, [attendance]) 
+),
+students AS
+		(
+		SELECT *
+		FROM
+		(
+			VALUES
+			(1, 2, 5, CAST('04-03-12' AS date)),
+			(2, 1, 4, CAST('04-03-13' AS date)),
+			(3, 1, 3, CAST('04-03-14' AS date)),
+			(4, 2, 4, CAST('04-03-13' AS date))
+			)
+		AS Table_2 (student_id, school_id, grade_level, date_of_birth)
 )
 
+SELECT *
+FROM attendance
 
 
 
