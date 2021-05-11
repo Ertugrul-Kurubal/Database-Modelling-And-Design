@@ -35,15 +35,14 @@ credit AS
 		GROUP BY receiver
 		) 
 
-SELECT *
+SELECT  CASE
+		WHEN a.[user] IS NULL THEN b.[user] ELSE a.[user]  END as [user],
+		CASE
+		WHEN a.[user] = b.[user] THEN credit - debit ELSE CASE WHEN a.[user] IS NULL THEN credit ELSE -debit END END as Net_Change
 FROM debit a
-FULL OUTER JOIN credit b
-ON a.[user] = b.[user]
-
-
-
-
-
+		FULL OUTER JOIN credit b
+		ON a.[user] = b.[user]
+		ORDER BY Net_Change DESC
 
 --Q2
 
