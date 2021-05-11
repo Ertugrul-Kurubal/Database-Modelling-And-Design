@@ -46,22 +46,34 @@ FROM debit a
 
 --Q2
 
-WITH transactions  AS
+WITH attendance  AS
 (
 		SELECT * 
 		FROM 
 		(
 			VALUES
-			(5, 2, 10, CAST('02-12-20' AS date)),
-			(1, 3, 15, CAST('02-13-20' AS date)), 
-			(2, 1, 20, CAST('02-13-20' AS date)), 
-			(2, 3, 25, CAST('02-14-20' AS date)), 
-			(3, 1, 20, CAST('02-15-20' AS date)), 
-			(3, 2, 15, CAST('02-15-20' AS date)), 
-			(1, 4, 5,  CAST('02-16-20' AS date))
+			(1, CAST('04-03-20' AS date), 0),
+			(2, CAST('04-03-20' AS date), 1), 
+			(3, CAST('04-03-20' AS date), 1), 
+			(1, CAST('04-04-20' AS date), 1), 
+			(2, CAST('04-04-20' AS date), 1), 
+			(3, CAST('04-04-20' AS date), 1), 
+			(1, CAST('04-05-20' AS date), 0),
+			(2, CAST('04-05-20' AS date), 1),
+			(3, CAST('04-05-20' AS date), 1),
+			(4, CAST('04-05-20' AS date), 1)
 			)
-		AS Table_1 ([sender], receiver, amount, [transaction-date]) 
+		AS Table_1 (student_id, school_date, [attendance]) 
 )
+
+
+
+
+
+
+
+
+
 
 
 
