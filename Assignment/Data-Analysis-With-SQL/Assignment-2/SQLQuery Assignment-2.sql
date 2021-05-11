@@ -2,7 +2,7 @@
 
 --Assignment-2
 
---Q1
+--Q1 Changes in net worth
 
 WITH transactions  AS
 (
