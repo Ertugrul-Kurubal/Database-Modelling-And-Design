@@ -80,7 +80,7 @@ students AS
 )
 
 SELECT *
-FROM attendance
+FROM students
 
 
 
