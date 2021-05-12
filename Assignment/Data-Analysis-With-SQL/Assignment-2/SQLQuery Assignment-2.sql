@@ -72,14 +72,14 @@ students AS
 		(
 			VALUES
 			(1, 2, 5, CAST('04-03-12' AS date)),
-			(2, 1, 4, CAST('04-03-13' AS date)),
-			(3, 1, 3, CAST('04-03-14' AS date)),
+			(2, 1, 4, CAST('04-04-13' AS date)),
+			(3, 1, 3, CAST('04-05-14' AS date)),
 			(4, 2, 4, CAST('04-03-13' AS date))
 			)
 		AS Table_2 (student_id, school_id, grade_level, date_of_birth)
 )
 
-SELECT *
+SELECT a.student_id, a.attendance, b.school_id, b.grade_level, a.school_date, b.date_of_birth
 FROM attendance a, students b
 WHERE a.student_id = b.student_id
 
