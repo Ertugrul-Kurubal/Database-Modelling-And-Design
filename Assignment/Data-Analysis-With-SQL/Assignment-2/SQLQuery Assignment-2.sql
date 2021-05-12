@@ -97,13 +97,13 @@ AND MONTH(l1.date_of_birth) = MONTH(l2.school_date)
 */
 
 SELECT 
-	COUNT(DISTINCT l1.student_id) AS cnt_std
-	, COUNT(DISTINCT CASE WHEN DAY(l2.date_of_birth) = DAY(l1.date)
-         										AND MONTH(l2.date_of_birth) = MONTH(l1.date)
-         										AND l1.attendance THEN l1.student_id END) AS cnt_std_bday
-	, cnt_std_bday/cnt_std AS perc_std_attendance
-FROM attendance_events l1
-LEFT JOIN all_students l2 ON l2.student_id = l1.student_id
+	COUNT(DISTINCT a.student_id) AS cnt_std
+	, COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
+      AND MONTH(b.date_of_birth) = MONTH(a.school_date)
+      AND a.[attendance] = 1 THEN a.student_id END) AS cnt_std_bday
+	, ROUND(cnt_std_bday/cnt_std, 2) AS perc_std_attendance
+FROM attendance a
+LEFT JOIN students b ON a.student_id = b.student_id
 
 
 
