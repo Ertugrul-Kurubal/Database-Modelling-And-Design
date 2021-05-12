@@ -80,7 +80,8 @@ students AS
 )
 
 SELECT *
-FROM students
+FROM attendance a, students b
+WHERE a.student_id = b.student_id
 
 
 
