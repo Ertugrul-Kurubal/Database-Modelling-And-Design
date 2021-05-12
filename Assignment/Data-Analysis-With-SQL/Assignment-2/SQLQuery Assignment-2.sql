@@ -79,32 +79,16 @@ students AS
 		AS Table_2 (student_id, school_id, grade_level, date_of_birth)
 )
 
-/*SELECT b.student_id, a.attendance, b.school_id, b.grade_level, a.school_date, b.date_of_birth
-FROM attendance a 
-RIGHT JOIN students b
-ON a.student_id = b.student_id
-*/
-
-/*
 SELECT 
-	COUNT(DISTINCT a.student_id) AS all_students
-	, COUNT(DISTINCT CASE WHEN a.attendance THEN a.student_id END) AS bday_students
-	, bday_students/all_students AS perc_bday_attendance
-FROM attendance a
-LEFT JOIN students b ON a.student_id = b.student_id
-AND DAY(l1.date_of_birth) = DAY(l2.school_date)
-AND MONTH(l1.date_of_birth) = MONTH(l2.school_date)
-*/
-
-SELECT 
-	COUNT(DISTINCT a.student_id) AS cnt_std
-	, COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
+	CAST(COUNT(DISTINCT a.student_id) AS numeric) AS cnt_std
+	, CAST(COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
       AND MONTH(b.date_of_birth) = MONTH(a.school_date)
-      AND a.[attendance] = 1 THEN a.student_id END) AS cnt_std_bday
-	, ROUND(cnt_std_bday/cnt_std, 2) AS perc_std_attendance
+      AND a.[attendance] = 1 THEN a.student_id END) AS numeric) AS cnt_std_bday
+	 ,CAST(CAST(COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
+      AND MONTH(b.date_of_birth) = MONTH(a.school_date)
+      AND a.[attendance] = 1 THEN a.student_id END) AS numeric)/CAST(COUNT(DISTINCT a.student_id) AS numeric) AS Numeric(3,1)) AS perc_std_attendance
 FROM attendance a
 LEFT JOIN students b ON a.student_id = b.student_id
-
 
 
 
