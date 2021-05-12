@@ -79,14 +79,31 @@ students AS
 		AS Table_2 (student_id, school_id, grade_level, date_of_birth)
 )
 
-SELECT a.student_id, a.attendance, b.school_id, b.grade_level, a.school_date, b.date_of_birth
-FROM attendance a, students b
-WHERE a.student_id = b.student_id
+/*SELECT b.student_id, a.attendance, b.school_id, b.grade_level, a.school_date, b.date_of_birth
+FROM attendance a 
+RIGHT JOIN students b
+ON a.student_id = b.student_id
+*/
 
+/*
+SELECT 
+	COUNT(DISTINCT a.student_id) AS all_students
+	, COUNT(DISTINCT CASE WHEN a.attendance THEN a.student_id END) AS bday_students
+	, bday_students/all_students AS perc_bday_attendance
+FROM attendance a
+LEFT JOIN students b ON a.student_id = b.student_id
+AND DAY(l1.date_of_birth) = DAY(l2.school_date)
+AND MONTH(l1.date_of_birth) = MONTH(l2.school_date)
+*/
 
-
-
-
+SELECT 
+	COUNT(DISTINCT l1.student_id) AS cnt_std
+	, COUNT(DISTINCT CASE WHEN DAY(l2.date_of_birth) = DAY(l1.date)
+         										AND MONTH(l2.date_of_birth) = MONTH(l1.date)
+         										AND l1.attendance THEN l1.student_id END) AS cnt_std_bday
+	, cnt_std_bday/cnt_std AS perc_std_attendance
+FROM attendance_events l1
+LEFT JOIN all_students l2 ON l2.student_id = l1.student_id
 
 
 
