@@ -1,5 +1,4 @@
 
-
 --Assignment-2
 
 --Q1 Changes in net worth
@@ -80,16 +79,16 @@ students AS
 )
 
 SELECT 
-	CAST(COUNT(DISTINCT a.student_id) AS numeric) AS cnt_std
-	, CAST(COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
-      AND MONTH(b.date_of_birth) = MONTH(a.school_date)
-      AND a.[attendance] = 1 THEN a.student_id END) AS numeric) AS cnt_std_bday
-	 ,CAST(CAST(COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
-      AND MONTH(b.date_of_birth) = MONTH(a.school_date)
-      AND a.[attendance] = 1 THEN a.student_id END) AS numeric)/CAST(COUNT(DISTINCT a.student_id) AS numeric) AS Numeric(3,1)) AS perc_std_attendance
+		CAST(COUNT(DISTINCT a.student_id) AS numeric) AS std_num
+		,CAST(COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
+		AND MONTH(b.date_of_birth) = MONTH(a.school_date)
+		AND a.[attendance] = 1 THEN a.student_id END) AS numeric) AS bday_sch_att
+		,CAST(CAST(COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
+		AND MONTH(b.date_of_birth) = MONTH(a.school_date)
+		AND a.[attendance] = 1 THEN a.student_id END) AS numeric)/CAST(COUNT(DISTINCT a.student_id) AS numeric) AS Numeric(3,1)) 
+		AS perc_bday_att
 FROM attendance a
 LEFT JOIN students b ON a.student_id = b.student_id
-
 
 
 
