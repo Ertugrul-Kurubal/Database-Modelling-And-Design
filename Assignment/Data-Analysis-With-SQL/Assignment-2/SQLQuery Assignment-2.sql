@@ -78,26 +78,29 @@ students AS
 		AS Table_2 (student_id, school_id, grade_level, date_of_birth)
 )
 
-/*SELECT 
-		CAST(COUNT(DISTINCT a.student_id) AS numeric) AS std_num
+SELECT 
+		CAST(COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
+		AND MONTH(b.date_of_birth) = MONTH(a.school_date)
+		THEN a.student_id END) AS numeric) AS std_num
 		,CAST(COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
 		AND MONTH(b.date_of_birth) = MONTH(a.school_date)
 		AND a.[attendance] = 1 THEN a.student_id END) AS numeric) AS bday_sch_att
 		,CAST(CAST(COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
 		AND MONTH(b.date_of_birth) = MONTH(a.school_date)
-		AND a.[attendance] = 1 THEN a.student_id END) AS numeric)/CAST(COUNT(DISTINCT a.student_id) AS numeric) AS Numeric(3,1)) 
+		AND a.[attendance] = 1 THEN a.student_id END) AS numeric)/CAST(COUNT(DISTINCT CASE WHEN DAY(b.date_of_birth) = DAY(a.school_date)
+		AND MONTH(b.date_of_birth) = MONTH(a.school_date)
+		THEN a.student_id END) AS numeric) AS Numeric(3,2)) 
 		AS perc_bday_att
 FROM attendance a
 INNER JOIN students b ON a.student_id = b.student_id
-*/
 
+/*
 SELECT CAST(1.0*SUM(attendance)/COUNT(*) AS NUMERIC (3,2)) AS Birthday_attendance
 FROM attendance A, students B
 WHERE  A.student_id = B.student_id 
 AND MONTH (A.school_date) = MONTH (B.date_of_birth)
 AND DAY (A.school_date) = DAY (B.date_of_birth)
-
-
+*/
 
 
 
