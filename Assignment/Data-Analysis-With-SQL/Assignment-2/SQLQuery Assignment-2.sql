@@ -94,6 +94,9 @@ SELECT
 FROM attendance a
 INNER JOIN students b ON a.student_id = b.student_id
 
+
+--2-way Solution from sir C129-Bektaþ 
+
 /*
 SELECT CAST(1.0*SUM(attendance)/COUNT(*) AS NUMERIC (3,2)) AS Birthday_attendance
 FROM attendance A, students B
