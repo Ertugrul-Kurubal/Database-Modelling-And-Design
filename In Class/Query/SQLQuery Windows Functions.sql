@@ -153,6 +153,32 @@ SELECT	*,
 FROM	production.products
 ORDER BY category_id, list_price
 
+-- 3. ANALYTIC NUMBERING FUNCTIONS --
+	/*
+ROW_NUMBER() - RANK() - DENSE_RANK() - CUME_DIST() - PERCENT_RANK() - NTILE()
+Products tablosunda herbir ürünün yanýna sýrasýyla þu deðerleri yazdýrýnýz:
+1. Herbir kategori içinde bisikletlerin fiyat sýralamasýný yapýnýz (artan fiyata göre 1'den baþlayýp birer birer artacak)
+2. Ayný soruyu ayný fiyatlý bisikletler ayný sýra numarasýný alacak þekilde yapýnýz (RANK fonksiyonunu kullanýnýz)
+Not: RANK fonksiyonunda ayný fiyatlý ürünlerin numarasý o ürünlerin ROW_NUMBER larýndan en küçüðü oluyor.
+	Ayný fiyatlý ürünlerde RANK fonksiyonu o ürünlerin ROW_NUMBER deðerinin en büyüðünü döndürmüyor diye biliyorum.
+	Bu ihtiyaç için aþaðýda yer alan ikinci sorguyu inceleyebilirsiniz.
+	Bu sorguda en saðdaki alan (R2 yani RANK2 diyebilirsiniz) bu ihtiyacý karþýlamaktadýr.
+3. Ayný soruyu ayný fiyatlý bisikletler ayný sýra numarasýný alacak þekilde yapýnýz (DENSE_RANK fonksiyonunu kullanýnýz)
+	Not: 2. ve 3. maddenin sonuçlarýný karþýlaþtýrýnýz. Farklýlýk varsa nedenini anlamaya çalýþýnýz?
+	Farký daha iyi görebilmek için ayný kategori içinde sýralamalarýn nasýl deðiþtiðine dikkat ediniz.
+4. Herbir kategori içinde bisikletierin fiyatlarýna göre bulunduklarý yüzdelik dilimleri yazdýrýnýz. (CUME_DIST fonksiyonunu kullanýnýz)
+	Not: Hesaplanan deðeri virgülden sonra 2 hane olacak þekilde yazdýrýnýz ve bu deðeri yorumlayýnýz?
+5. Bir bisiklet diðer bisikletlerin yüzde kaçýndan daha pahalýdýr? Bu yüzdeyi hesaplayýnýz. (PERCENT_RANK fonksiyonunu kullanýnýz)
+	Not: Hesaplanan deðeri virgülden sonra 2 hane olacak þekilde yazdýrýnýz ve bu deðeri yorumlayýnýz?
+	4. ve 5. maddelerde hesaplanan deðerleri karþýlaþtýrýnýz. Formüllerine göz atýnýz.
+Not: CUME_DIST fonksiyonu bir ürünün belirlediðimiz sýraya yüzde kaçlýk dilimde olduðunu gösterir (Sýnavlardaki yüzdelik dilimler gibi)
+	PERCENT_RANK fonksiyou ise bir ürünün belirttiðimiz partition içindeki diðer ürünlerin yüzde kaçýndan daha pahalý/ucuz olduðunu ifade eder.
+6. Herbir kategorideki bisikletleri artan fiyata göre 4 gruba ayýrýn. Mümkünse her grupta ayný sayýda bisiklet olacak. (NTILE fonksiyonunu kullanýnýz)
+	Not: En düþük fiyatlý bisikletler 1. grupta, diðer bisikletler içinde en düþük fiyatlý bisikletler 2. grupta ... olacak þekilde.
+Not: NTILE ile kümeler oluþturulurken ayný fiyatlý ürünler farklý gruplara denk gelebilir.
+	NTLIE bu durumu kontrol etmemektedir. Buna herhangi bir çözüm bulamadým. Bulursam paylaþýrým.
+	*/
+
 
 
 
