@@ -111,6 +111,48 @@ SELECT * ,
 FROM [sales].[orders]
 ORDER BY customer_id, order_id
 
+/*
+FIRST_VALUE() - LAST_VALUE()
+Products tablosunda herbir ürünün yanýna sýrasýyla þu deðerleri yazdýrýnýz:
+1. Tüm bisikletler arasýnda en ucuz bisikletin adý (FIRST_VALUE fonksiyonunu kullanýnýz)
+2. Herbir kategorideki en ucuz bisikletin adý (FIRST_VALUE fonksiyonunu kullanýnýz)
+3. 1. maddeyi LAST_VALUE fonksiyonu kullanarak yapýnýz
+4. 2. maddeyi LAST_VALUE fonksiyonu kullanarak yapýnýz
+	Not: 2. ve 4. maddenin sonuçlarýný karþýlaþtýrýnýz. Farklýlýk varsa nedenini bulmaya çalýþýnýz?
+	Ýstediðiniz satýr berlirlediðiniz kurala göre FIRST_VALUE da ilk sýrada, LAST_VALUE da sonra sýrada gelmelidir.
+	Eðer veri içinde ayný fiyatlý bisikletler varsa ORDER BY sýralamasýna ekstra dikkat etmek lazým.
+	OVER bloðunda belirlediðiniz ORDER BY kuralýna göre tabloyu baþka bir sorguda sorgulayýp istediðiniz satýr istediðiniz yerder (FIRST veya LAST) gelmiþ mi diye kontrol edebilirsiniz.
+Not: OVER bloðu içinde ORDER BY dan sonra Window Frame tanýmlarken ROWS ya da RANGE kullanýlabilir.
+	ROWS BETWEEN ile RANGE BETWEEN arasýnda çok fark yok.
+	RANGE ile sadece UNBOUNDEN PRECEDING, CURRENT ROW veya UNBOUNDED FOLLOWING deðerlerini kullanabiliyorsunuz.
+	ROWS ile ek olarak n PRECEDING ya da m FOLLOWING deðerlerini de kullanabiliyoruz.
+	Dolayýsýyla RANGE i bilin fakat ROWS kullanmaya alýþmanýzý tavsiye ederim.
+	*/
+--Q1
+
+SELECT *,
+		FIRST_VALUE(product_name) OVER(ORDER BY list_price) less_price_bike
+FROM [production].[products]
+ORDER BY list_price
+
+--Q2
+
+SELECT *,
+		FIRST_VALUE(product_name) OVER(ORDER BY list_price) less_price_bike,
+		FIRST_VALUE(product_name) OVER(PARTITION BY category_id ORDER BY list_price) less_price_bike_ctgry
+FROM [production].[products]
+ORDER BY category_id, list_price
+
+--Q3-Q4
+
+SELECT	*,
+		FIRST_VALUE(product_name) OVER(ORDER BY list_price) en_ucuz_bisiklet,
+		FIRST_VALUE(product_name) OVER(PARTITION BY category_id ORDER BY list_price, product_id) en_ucuz_bisiklet_cat,
+		LAST_VALUE(product_name) OVER(ORDER BY list_price DESC, product_id DESC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) en_ucuz_bisiklet2,
+		LAST_VALUE(product_name) OVER(PARTITION BY category_id ORDER BY list_price DESC, product_id DESC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) en_ucuz_bisiklet_cat2
+FROM	production.products
+ORDER BY category_id, list_price
+
 
 
 
