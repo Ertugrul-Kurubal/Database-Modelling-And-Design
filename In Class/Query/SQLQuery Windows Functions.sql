@@ -40,3 +40,8 @@ Products tablosunda herbir ürünün yanýna sýrasýyla þu deðerleri yazdýrýnýz:
 	Soru: WF ile bu sorgu içinde herbir kategoride kaç farklý marka olduðunu hesaplayabilir miyiz?
 5. Herbir kategorideki herbir markada kaç farklý bisikletin bulunduðu
 	*/
+
+SELECT *,
+		MIN(list_price) OVER() less_price_bike
+FROM [production].[products]
+ORDER BY category_id
