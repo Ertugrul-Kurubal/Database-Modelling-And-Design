@@ -44,4 +44,29 @@ Products tablosunda herbir ürünün yanýna sýrasýyla þu deðerleri yazdýrýnýz:
 SELECT *,
 		MIN(list_price) OVER() less_price_bike
 FROM [production].[products]
-ORDER BY category_id
+ORDER BY category_id, brand_id, list_price
+
+SELECT *,
+		MIN(list_price) OVER() less_price_bike,
+		MIN(list_price) OVER(PARTITION BY category_id) less_price_ctgry
+FROM [production].[products]
+ORDER BY category_id, brand_id, list_price
+
+SELECT *,
+		MIN(list_price) OVER() less_price_bike,
+		MIN(list_price) OVER(PARTITION BY category_id) less_price_ctgry,
+		COUNT(product_id) OVER() diff_type_product
+FROM [production].[products]
+ORDER BY category_id, brand_id, list_price
+
+
+
+
+
+
+
+
+
+
+
+
