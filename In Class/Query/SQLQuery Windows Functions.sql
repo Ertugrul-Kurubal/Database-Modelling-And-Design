@@ -179,6 +179,81 @@ Not: NTILE ile kümeler oluþturulurken ayný fiyatlý ürünler farklý gruplara denk 
 	NTLIE bu durumu kontrol etmemektedir. Buna herhangi bir çözüm bulamadým. Bulursam paylaþýrým.
 	*/
 
+--Q1
+
+SELECT *,
+		ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY list_price) RN
+FROM [production].[products]
+ORDER BY category_id, list_price
+
+--Q2
+
+SELECT *,
+		ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY list_price) RN,
+		RANK() OVER(PARTITION BY category_id ORDER BY list_price) R
+FROM [production].[products]
+ORDER BY category_id, list_price
+
+--Q3
+
+SELECT *,
+		ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY list_price) RN,
+		RANK() OVER(PARTITION BY category_id ORDER BY list_price) R,
+		DENSE_RANK() OVER(PARTITION BY category_id ORDER BY list_price) DR
+FROM [production].[products]
+ORDER BY category_id, list_price
+
+--Q4
+
+SELECT *,
+		ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY list_price) RN,
+		RANK() OVER(PARTITION BY category_id ORDER BY list_price) R,
+		DENSE_RANK() OVER(PARTITION BY category_id ORDER BY list_price) DR,
+		ROUND(CUME_DIST() OVER(PARTITION BY category_id ORDER BY list_price),2) CD
+FROM [production].[products]
+ORDER BY category_id, list_price
+
+--Q5
+
+SELECT *,
+		ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY list_price) RN,
+		RANK() OVER(PARTITION BY category_id ORDER BY list_price) R,
+		DENSE_RANK() OVER(PARTITION BY category_id ORDER BY list_price) DR,
+		ROUND(CUME_DIST() OVER(PARTITION BY category_id ORDER BY list_price),2) CD,
+		ROUND(PERCENT_RANK() OVER(PARTITION BY category_id ORDER BY list_price),2) PR
+FROM [production].[products]
+ORDER BY category_id, list_price
+
+--Q6
+
+SELECT *,
+		ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY list_price) RN,
+		RANK() OVER(PARTITION BY category_id ORDER BY list_price) R,
+		DENSE_RANK() OVER(PARTITION BY category_id ORDER BY list_price) DR,
+		ROUND(CUME_DIST() OVER(PARTITION BY category_id ORDER BY list_price),2) CD,
+		ROUND(PERCENT_RANK() OVER(PARTITION BY category_id ORDER BY list_price),2) PR,
+		NTILE(4) OVER(PARTITION BY category_id ORDER BY list_price) NT
+FROM [production].[products]
+ORDER BY category_id, list_price
+
+--RANK2
+
+SELECT	A.*,
+		MAX(RN) OVER(PARTITION BY A.category_id, A.R) R2
+FROM	(
+		SELECT	*,
+				ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY list_price) RN,
+				RANK() OVER(PARTITION BY category_id ORDER BY list_price) R,
+				DENSE_RANK() OVER(PARTITION BY category_id ORDER BY list_price) DR,
+				ROUND(CUME_DIST() OVER(PARTITION BY category_id ORDER BY list_price), 02) CD,
+				ROUND(PERCENT_RANK() OVER(PARTITION BY category_id ORDER BY list_price), 2) PR,
+				NTILE(4) OVER(PARTITION BY category_id ORDER BY list_price) NT
+		FROM	production.products
+		) A
+ORDER BY A.category_id, A.list_price
+;
+
+
 
 
 
