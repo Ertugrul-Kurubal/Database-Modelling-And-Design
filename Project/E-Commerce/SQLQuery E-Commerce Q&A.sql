@@ -26,4 +26,30 @@ SELECT * FROM combined_table
 
 --Q2
 --Find the top 3 customers who have the maximum count of orders.
---
+
+SELECT * FROM [dbo].[combined_table]
+
+SELECT TOP(3) Cust_Name, COUNT(Ord_id) AS cnt_ord
+FROM [dbo].[combined_table]
+GROUP BY Cust_Name
+ORDER BY cnt_ord DESC
+
+--Q3
+--Create a new column at combined_table as DaysTakenForDelivery that contains the date difference of Order_Date and Ship_Date.
+
+ALTER TABLE [dbo].[combined_table]
+ADD DaysTakenForDelivery AS DATEDIFF(DAY, Order_Date, Ship_Date)
+
+/*
+ALTER TABLE [dbo].[combined_table]
+DROP COLUMN DaysTakenForDelivery
+*/
+
+SELECT * FROM [dbo].[combined_table]
+
+--Q4
+--Find the customer whose order took the maximum time to get delivered.
+
+
+
+
