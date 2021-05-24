@@ -22,7 +22,7 @@ PRIMARY KEY (Prod_id)
 
 CREATE TABLE order_dimen 
 (
-Order_Date date,
+Order_Date datetime2,
 Order_Priority nvarchar(50),
 Order_id nvarchar(50)
 PRIMARY KEY (Order_id)
@@ -59,7 +59,7 @@ FOREIGN KEY (Cust_id) REFERENCES cust_dimen (Cust_id)
 
 /*
 ALTER TABLE order_dimen
-ALTER COLUMN Order_Date date
+ALTER COLUMN Order_Date datetime2
 
 ALTER TABLE order_dimen
 ALTER COLUMN Order_Priority nvarchar(20)
