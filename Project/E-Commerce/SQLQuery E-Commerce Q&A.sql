@@ -50,6 +50,16 @@ SELECT * FROM [dbo].[combined_table]
 --Q4
 --Find the customer whose order took the maximum time to get delivered.
 
+SELECT TOP(1) Cust_Name, Ord_id, DaysTakenForDelivery
+FROM [dbo].[combined_table]
+ORDER BY DaysTakenForDelivery DESC
+
+SELECT * FROM 
+[dbo].[combined_table]
+WHERE Ord_id = 'Ord_4335'
+
+--Q5
+--Retrieve total sales made by each product from the data (use Window function)
 
 
 
