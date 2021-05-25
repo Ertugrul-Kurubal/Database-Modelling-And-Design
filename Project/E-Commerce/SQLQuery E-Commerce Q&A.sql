@@ -80,3 +80,40 @@ WHERE MONTH(Order_Date) = 01
 --Q8
 --Write a query to return for each user the time elapsed between the first purchasing and the third purchasing, in ascending order by Customer ID.
 
+SELECT * ,DATEDIFF(DAY, (FIRST_VALUE(Order_Date) OVER(PARTITION BY Cust_id ORDER BY Order_Date)), (LEAD(Order_Date,2) OVER(PARTITION BY Cust_id ORDER BY Order_Date))) AS first_third
+FROM [dbo].[combined_table]
+ORDER BY Cust_id ASC
+
+/*
+SELECT *
+FROM [dbo].[combined_table]
+WHERE Cust_id = 'Cust_100'
+ORDER BY Cust_id, Order_Date
+
+SELECT DATEDIFF(DAY, '2009-06-21', '2010-05-07')
+
+SELECT FIRST_VALUE(Order_Date) OVER(PARTITION BY Cust_id ORDER BY Order_Date) first_ord
+FROM [dbo].[combined_table]
+ORDER BY Cust_id, Order_Date
+
+
+SELECT LEAD(Order_Date,2) OVER(PARTITION BY Cust_id ORDER BY Order_Date) third_ord
+FROM [dbo].[combined_table]
+ORDER BY Cust_id, Order_Date
+*/
+
+--Q9
+--
+
+
+
+
+
+
+
+
+
+
+
+
+
