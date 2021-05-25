@@ -61,5 +61,6 @@ WHERE Ord_id = 'Ord_4335'
 --Q5
 --Retrieve total sales made by each product from the data (use Window function)
 
-
+SELECT *, SUM(CAST(Order_Quantity AS integer)) OVER(PARTITION BY Prod_id) prd_tot_sales
+FROM [dbo].[combined_table]
 
