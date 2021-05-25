@@ -70,5 +70,13 @@ FROM [dbo].[combined_table]
 SELECT *, SUM(CAST(Profit AS bigint)) OVER(PARTITION BY Prod_id) prd_tot_profit
 FROM [dbo].[combined_table]
 
---Q7
---
+--Q7 ???
+--Count the total number of unique customers in January and how many of them came back every month over the entire year in 2011
+
+SELECT COUNT(DISTINCT Cust_id) cust_num
+FROM [dbo].[combined_table]
+WHERE MONTH(Order_Date) = 01
+
+--Q8
+--Write a query to return for each user the time elapsed between the first purchasing and the third purchasing, in ascending order by Customer ID.
+
