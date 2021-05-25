@@ -64,3 +64,11 @@ WHERE Ord_id = 'Ord_4335'
 SELECT *, SUM(CAST(Order_Quantity AS integer)) OVER(PARTITION BY Prod_id) prd_tot_sales
 FROM [dbo].[combined_table]
 
+--Q6
+--Retrieve total profit made from each product from the data (use windows function)
+
+SELECT *, SUM(CAST(Profit AS bigint)) OVER(PARTITION BY Prod_id) prd_tot_profit
+FROM [dbo].[combined_table]
+
+--Q7
+--
