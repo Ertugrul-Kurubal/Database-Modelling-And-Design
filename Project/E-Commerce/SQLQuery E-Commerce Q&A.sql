@@ -95,12 +95,35 @@ ORDER BY tot_sales
 SELECT *, SUM(CAST(Profit AS bigint)) OVER(PARTITION BY Prod_id) prd_tot_profit
 FROM [dbo].[combined_table]
 
+/*
+SELECT DISTINCT Prod_id, SUM(CAST(Profit AS bigint)) OVER(PARTITION BY Prod_id) prd_tot_profit
+FROM [dbo].[combined_table]
+ORDER BY prd_tot_profit DESC
+*/
+
 --Q7 ???
 --Count the total number of unique customers in January and how many of them came back every month over the entire year in 2011
 
 SELECT COUNT(DISTINCT Cust_id) cust_num
 FROM [dbo].[combined_table]
 WHERE MONTH(Order_Date) = 01
+
+/*
+SELECT DISTINCT MONTH(Order_Date) AS [Month],
+		COUNT(DISTINCT Cust_id) AS cust_num
+FROM [dbo].[combined_table] A
+WHERE
+EXISTS
+     (
+     SELECT Cust_id
+     FROM [dbo].[combined_table] B
+     WHERE  A.Cust_id = B.Cust_id 
+			AND YEAR (Order_Date) = 2011
+			AND MONTH(Order_Date) = 01
+     )
+AND YEAR (Order_Date) = 2011
+GROUP BY MONTH(Order_Date)
+*/
 
 --Q8
 --Write a query to return for each user the time elapsed between the first purchasing and the third purchasing, in ascending order by Customer ID.
