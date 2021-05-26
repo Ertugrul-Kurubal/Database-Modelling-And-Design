@@ -80,7 +80,7 @@ WHERE MONTH(Order_Date) = 01
 --Q8
 --Write a query to return for each user the time elapsed between the first purchasing and the third purchasing, in ascending order by Customer ID.
 
-SELECT * ,DATEDIFF(DAY, (FIRST_VALUE(Order_Date) OVER(PARTITION BY Cust_id ORDER BY Order_Date)), (LEAD(Order_Date,2) OVER(PARTITION BY Cust_id ORDER BY Order_Date))) AS first_third
+SELECT * ,DATEDIFF(DAY, (FIRST_VALUE(Order_Date) OVER(PARTITION BY Cust_id ORDER BY Order_Date)), (LEAD(Order_Date,2) OVER(PARTITION BY Cust_id ORDER BY Order_Date))) AS first_third_diff
 FROM [dbo].[combined_table]
 ORDER BY Cust_id ASC
 
@@ -103,9 +103,18 @@ ORDER BY Cust_id, Order_Date
 */
 
 --Q9
---
+--Write a query that returns customers who purchased both product 11 and product 14 as well as the ratio of 
+--these products to the total number of products purchased by the customer.
 
+SELECT COUNT(Cust_id) OVER (PARTITION BY 
+FROM (SELECT * FROM [dbo].[combined_table] 
+		WHERE Prod_id = 'Prod_11' OR Prod_id = 'Prod_14') a
 
+GROUP BY Cust_id
+ORDER BY Cust_id
+
+SELECT Cust_id, Prod_id FROM [dbo].[combined_table] 
+		WHERE Prod_id = 'Prod_11' OR Prod_id = 'Prod_14'
 
 
 
