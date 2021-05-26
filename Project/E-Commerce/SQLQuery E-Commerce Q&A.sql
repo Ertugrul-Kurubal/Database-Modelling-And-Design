@@ -122,7 +122,7 @@ ALTER TABLE [dbo].[combined_table]
 ALTER COLUMN Order_Quantity int
 */
 
-SELECT SUM(Order_Quantity) OVER (PARTITION BY Cust_id) tot_ord, CASE WHEN Prod_id = 'Prod_11' OR Prod_id = 'Prod_14' THEN SUM(Order_Quantity) OVER (PARTITION BY Cust_id) END ord_num
+SELECT Cust_id, SUM(Order_Quantity) tot_ord 
 FROM [dbo].[combined_table] 
 WHERE Cust_id IN (SELECT Cust_id
 					FROM [dbo].[combined_table] 
@@ -132,8 +132,42 @@ WHERE Cust_id IN (SELECT Cust_id
 					FROM [dbo].[combined_table] 
 					WHERE Prod_id = 'Prod_14'
 					)
+GROUP BY Cust_id 
+;
 
+SELECT Cust_id, SUM(Order_Quantity) ord_num
+FROM [dbo].[combined_table] 
+WHERE Cust_id IN (SELECT Cust_id
+					FROM [dbo].[combined_table] 
+					WHERE Prod_id = 'Prod_11'
+					INTERSECT
+					SELECT Cust_id
+					FROM [dbo].[combined_table] 
+					WHERE Prod_id = 'Prod_14'
+					)
+		AND Prod_id IN ('Prod_11','Prod_14')
+GROUP BY Cust_id 
+;
 
+--Find month-by-month customer retention ratei since the start of the business (using views).
+
+--Q1
+--Create a view where each user’s visits are logged by month, allowing for the possibility that 
+--these will have occurred over multiple years since whenever business started operations.
+
+SELECT 
+
+--Q2
+--Identify the time lapse between each visit. So, for each person and for each month, we see when the next visit is.
+
+--Q3
+--Calculate the time gaps between visits.
+
+--Q4
+--Categorise the customer with time gap 1 as retained, >1 as irregular and NULL as churned.
+
+--Q5
+--Calculate the retention month wise.
 
 
 
