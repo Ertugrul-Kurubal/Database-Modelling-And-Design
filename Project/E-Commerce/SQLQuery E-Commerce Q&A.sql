@@ -106,15 +106,12 @@ ORDER BY Cust_id, Order_Date
 --Write a query that returns customers who purchased both product 11 and product 14 as well as the ratio of 
 --these products to the total number of products purchased by the customer.
 
-SELECT COUNT(Cust_id) OVER (PARTITION BY 
-FROM (SELECT * FROM [dbo].[combined_table] 
-		WHERE Prod_id = 'Prod_11' OR Prod_id = 'Prod_14') a
-
-GROUP BY Cust_id
+SELECT *, COUNT(Cust_id) OVER (PARTITION BY Cust_id) ord_num
+FROM [dbo].[combined_table] 
+WHERE Prod_id = 'Prod_11' OR Prod_id = 'Prod_14'
 ORDER BY Cust_id
 
-SELECT Cust_id, Prod_id FROM [dbo].[combined_table] 
-		WHERE Prod_id = 'Prod_11' OR Prod_id = 'Prod_14'
+
 
 
 
