@@ -3,6 +3,8 @@
 
 USE [ECommerce]
 
+--Analyze the data by finding the answers to the questions below:
+
 --Q1
 --Join all the tables and create a new table with all of the columns, called combined_table. 
 --(market_fact, cust_dimen, orders_dimen, prod_dimen, shipping_dimen)
@@ -130,6 +132,8 @@ WHERE Cust_id IN (SELECT Cust_id
 					FROM [dbo].[combined_table] 
 					WHERE Prod_id = 'Prod_14'
 					)
+
+
 
 
 
