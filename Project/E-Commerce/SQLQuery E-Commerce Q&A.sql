@@ -22,7 +22,7 @@ INNER JOIN [dbo].[prod_dimen] D
 ON A.Prod_id = D.Prod_id
 INNER JOIN [dbo].[shipping_dimen] E
 ON A.Ship_id = E.Ship_id
-;
+;DA
 
 SELECT * FROM combined_table
 
@@ -44,6 +44,15 @@ ADD DaysTakenForDelivery AS DATEDIFF(DAY, Order_Date, Ship_Date)
 
 /*
 ALTER TABLE [dbo].[combined_table]
+ADD DaysTakenForDelivery
+
+UPDATE combined_table
+SET DaysTakenForDelivery = DATEDIFF(DAY, Order_Date, Ship_Date) 
+*/
+
+
+/*
+ALTER TABLE [dbo].[combined_table]
 DROP COLUMN DaysTakenForDelivery
 */
 
@@ -56,6 +65,14 @@ SELECT TOP(1) Cust_Name, Ord_id, DaysTakenForDelivery
 FROM [dbo].[combined_table]
 ORDER BY DaysTakenForDelivery DESC
 
+/*
+SELECT Cust_id, Ord_id, DaysTakenForDelivery
+FROM [dbo].[combined_table]
+WHERE DaysTakenForDelivery = (SELECT MAX(DaysTakenForDelivery)
+							  FROM [dbo].[combined_table]
+							  )
+*/
+
 SELECT * FROM 
 [dbo].[combined_table]
 WHERE Ord_id = 'Ord_4335'
@@ -63,8 +80,14 @@ WHERE Ord_id = 'Ord_4335'
 --Q5
 --Retrieve total sales made by each product from the data (use Window function)
 
-SELECT *, SUM(CAST(Order_Quantity AS integer)) OVER(PARTITION BY Prod_id) prd_tot_sales
+SELECT *, SUM(CAST(Sales AS integer)) OVER(PARTITION BY Prod_id) prd_tot_sales
 FROM [dbo].[combined_table]
+
+/*
+SELECT DISTINCT Prod_id, SUM(Sales) OVER (PARTITION BY Prod_id) tot_sales
+FROM [dbo].[combined_table]
+ORDER BY tot_sales
+*/
 
 --Q6
 --Retrieve total profit made from each product from the data (use windows function)
