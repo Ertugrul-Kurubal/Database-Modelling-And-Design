@@ -268,14 +268,40 @@ FROM Customer_Logs
 --Q3
 --Calculate the time gaps between visits.
 
-
+/* IN CLASS !!! Kontrol et
+CREATE VIEW Time_Gaps_VW
+AS
+SELECT *, Next_Visit_VW - dense_month AS time_gaps
+FROM Next_Visit_VW
+*/
 
 --Q4
 --Categorise the customer with time gap 1 as retained, >1 as irregular and NULL as churned.
 
+/* IN CLASS
+SELECT Cust_id, Customer_Name, avg_time_gap,
+		CASE 
+			WHEN avg_time_gap = 1 THEN 'retained'
+			WHEN avg_time_gap > 1 THEN 'irregular'
+			WHEN avg_time_gap IS NULL THEN 'churned'
+		ELSE 'Unkown_Data' END Cust_Class
+FROM (
+		SELECT Cust_id, AVG(time_gaps) avg_time_gap
+		FROM Time_Gaps_VW
+		GROUP BY Cust_id
+		) A
+*/
+
 --Q5
 --Calculate the retention month wise.
 
+/* IN CLASS !!! Kontrol et
+SELECT DISTINCT next_visit_month,
+		COUNT(Cust_id) OVER(PARTITION BY dense_month) retention_sum_monthly
+FROM Time_Gaps_VW
+WHERE time_gaps = 1
+ORDER BY retention_sum_monthly DESC
+*/
 
 
 
