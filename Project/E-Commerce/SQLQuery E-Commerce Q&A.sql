@@ -42,7 +42,7 @@ ORDER BY cnt_ord DESC
 ALTER TABLE [dbo].[combined_table]
 ADD DaysTakenForDelivery AS DATEDIFF(DAY, Order_Date, Ship_Date)
 
-/*
+/* IN CLASS
 ALTER TABLE [dbo].[combined_table]
 ADD DaysTakenForDelivery
 
@@ -65,7 +65,7 @@ SELECT TOP(1) Cust_Name, Ord_id, DaysTakenForDelivery
 FROM [dbo].[combined_table]
 ORDER BY DaysTakenForDelivery DESC
 
-/*
+/* IN CLASS
 SELECT Cust_id, Ord_id, DaysTakenForDelivery
 FROM [dbo].[combined_table]
 WHERE DaysTakenForDelivery = (SELECT MAX(DaysTakenForDelivery)
@@ -83,7 +83,7 @@ WHERE Ord_id = 'Ord_4335'
 SELECT *, SUM(CAST(Sales AS integer)) OVER(PARTITION BY Prod_id) prd_tot_sales
 FROM [dbo].[combined_table]
 
-/*
+/* IN CLASS
 SELECT DISTINCT Prod_id, SUM(Sales) OVER (PARTITION BY Prod_id) tot_sales
 FROM [dbo].[combined_table]
 ORDER BY tot_sales
@@ -95,7 +95,7 @@ ORDER BY tot_sales
 SELECT *, SUM(CAST(Profit AS bigint)) OVER(PARTITION BY Prod_id) prd_tot_profit
 FROM [dbo].[combined_table]
 
-/*
+/* IN CLASS
 SELECT DISTINCT Prod_id, SUM(CAST(Profit AS bigint)) OVER(PARTITION BY Prod_id) prd_tot_profit
 FROM [dbo].[combined_table]
 ORDER BY prd_tot_profit DESC
@@ -108,7 +108,7 @@ SELECT COUNT(DISTINCT Cust_id) cust_num
 FROM [dbo].[combined_table]
 WHERE MONTH(Order_Date) = 01
 
-/*
+/* IN CLASS
 SELECT DISTINCT MONTH(Order_Date) AS [Month],
 		COUNT(DISTINCT Cust_id) AS cust_num
 FROM [dbo].[combined_table] A
@@ -131,6 +131,29 @@ GROUP BY MONTH(Order_Date)
 SELECT * ,DATEDIFF(DAY, (FIRST_VALUE(Order_Date) OVER(PARTITION BY Cust_id ORDER BY Order_Date)), (LEAD(Order_Date,2) OVER(PARTITION BY Cust_id ORDER BY Order_Date))) AS first_third_diff
 FROM [dbo].[combined_table]
 ORDER BY Cust_id ASC
+
+/* IN CLASS
+SELECT Cust_id, MIN (Order_date) first_purchase
+FROM combined_table
+GROUP BY Cust_id
+
+
+SELECT Cust_id,
+		Order_Date as third_purchase,
+		dens_rank,
+		first_purchase, 
+		DATEDIFF(DAY, first_purchase, Order_Date) first_third_diff
+FROM 
+        (
+        SELECT Cust_id,
+        		Order_Date,
+        		Ord_id,
+        		MIN (Order_date) OVER (PARTITION BY Cust_id) first_purchase
+        		DENSE_RANK() OVER(PARTITION BY Cust_id ORDER BY Order_Date) dens_rank
+        FROM combined_table
+        ) A
+WHERE dens_rank = 3
+*/
 
 /*
 SELECT *
