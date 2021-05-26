@@ -185,13 +185,31 @@ ORDER BY Cust_id
 SELECT *
 FROM [dbo].[combined_table] 
 
+/* IN CLASS
+WITH T1 AS
+(
+SELECT Cust_id,
+		SUM(CASE WHEN Prod_id = 'Prod_11' THEN 1 ELSE 0 END) AS P11,
+		SUM(CASE WHEN Prod_id = 'Prod_14' THEN 1 ELSE 0 END) AS P14,
+		COUNT(Prod_id) tot_prod
+FROM [dbo].[combined_table]
+GROUP BY Cust_id
+HAVING 
+		SUM(CASE WHEN Prod_id = 'Prod_11' THEN 1 ELSE 0 END) >=1 AND
+		SUM(CASE WHEN Prod_id = 'Prod_14' THEN 1 ELSE 0 END) >=1
+)
+SELECT Cust_id, P11, P14, tot_prod
+		CAST(1.0*P11/tot_prod AS NUMERIC (3,2)) AS ratio_P11,
+		CAST(1.0*P14/tot_prod AS NUMERIC (3,2)) AS ratio_P14
+FROM T1
+*/
 
 /*
 ALTER TABLE [dbo].[combined_table]
 ALTER COLUMN Order_Quantity int
 */
 
-SELECT Cust_id, SUM(Order_Quantity) tot_ord 
+SELECT Cust_id, COUNT(Prod_id) tot_prod_num 
 FROM [dbo].[combined_table] 
 WHERE Cust_id IN (SELECT Cust_id
 					FROM [dbo].[combined_table] 
@@ -204,7 +222,7 @@ WHERE Cust_id IN (SELECT Cust_id
 GROUP BY Cust_id 
 ;
 
-SELECT Cust_id, SUM(Order_Quantity) ord_num
+SELECT Cust_id, COUNT(Prod_id) prod_num
 FROM [dbo].[combined_table] 
 WHERE Cust_id IN (SELECT Cust_id
 					FROM [dbo].[combined_table] 
@@ -224,13 +242,33 @@ GROUP BY Cust_id
 --Create a view where each user’s visits are logged by month, allowing for the possibility that 
 --these will have occurred over multiple years since whenever business started operations.
 
-SELECT 
+/* IN CLASS
+CREATE VIEW Customer_Logs
+AS
+SELECT Cust_id,
+		YEAR(Order_Date) [Year],
+		MONTH(Order_Date) [Month],
+		COUNT(*) total_visit,
+		DENSE_RANK() OVER (ORDER BY YEAR(Order_Date), MONTH(Order_Date)) dense_month
+FROM [dbo].[combined_table]
+GROUP BY Cust_id, MONTH(Order_Date), YEAR(Order_Date)
+*/
 
 --Q2
 --Identify the time lapse between each visit. So, for each person and for each month, we see when the next visit is.
 
+/* IN CLASS
+CREATE VIEW Next_Visit_VW
+AS
+SELECT *,
+		LEAD(dense_month) OVER(PARTITION BY Cust_id ORDER BY dense_month) next_visit_month
+FROM Customer_Logs
+*/
+
 --Q3
 --Calculate the time gaps between visits.
+
+
 
 --Q4
 --Categorise the customer with time gap 1 as retained, >1 as irregular and NULL as churned.
