@@ -203,6 +203,24 @@ SELECT Cust_id, P11, P14, tot_prod
 		CAST(1.0*P14/tot_prod AS NUMERIC (3,2)) AS ratio_P14
 FROM T1
 */
+/*
+WITH cte1 AS (
+	SELECT Cust_id, Customer_Name, COUNT(Prod_id) OVER(PARTITION BY Cust_id) Prod11Count
+	FROM combined_table 
+	WHERE Prod_id = 11
+	), cte2 AS(
+	SELECT Cust_id, Customer_Name, COUNT(Prod_id) OVER(PARTITION BY Cust_id) Prod14Count
+	FROM combined_table 
+	WHERE Prod_id = 14
+),cte3 AS(
+	SELECT Cust_id, Customer_Name, COUNT(Prod_id) OVER(PARTITION BY Cust_id) ProdCount
+	FROM combined_table 
+)SELECT DISTINCT cte1.Cust_id,cte1.Customer_Name, Prod11Count, Prod14Count, ProdCount,
+		CAST(1.0*Prod11Count/ProdCount AS numeric(3,2)) AS P11_Quantity_Ratio,
+		CAST(1.0*Prod14Count/ProdCount AS numeric(3,2)) AS P14_Quantity_Ratio
+FROM cte1, cte2,cte3 
+WHERE cte1.Cust_id = cte2.Cust_id AND cte1.Cust_id=cte3.Cust_id
+*/
 
 /*
 ALTER TABLE [dbo].[combined_table]
