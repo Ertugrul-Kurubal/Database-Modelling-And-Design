@@ -58,3 +58,16 @@ FROM factorial6;
 */
 
 -- VIEW
+
+-- Sipariþ ile kargo süresi arasýnda 3 gün olan sipariþlerden view oluþturun.
+
+CREATE VIEW three_days AS 
+		SELECT * 
+		FROM [sales].[orders]
+		WHERE DATEDIFF(DAY, order_date, shipped_date)
+		;
+
+-- WINDOW FUNC
+
+-- 
+
