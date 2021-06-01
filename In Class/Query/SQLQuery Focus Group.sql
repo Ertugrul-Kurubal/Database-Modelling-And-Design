@@ -43,6 +43,7 @@ WHERE A.order_id = B.order_id
 SELECT B.first_name, B.last_name
 FROM T3 A, [sales].[customers] B
 WHERE A.customer_id = B.customer_id
+;
 
 -- How to query the factorial of 6 recursively?
 
