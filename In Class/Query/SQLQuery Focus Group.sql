@@ -86,7 +86,11 @@ SELECT *
 FROM three_days
 WHERE staff_id=6;
 
--- WINDOW FUNC
+-- WINDOW FUNCTIONS EXAMPLES
 
--- 
+-- Orders tablosundaki sipariþ sayýsýný ve müþterilere ait sipariþ sayýlarýný bir Select sorgusunda getiriniz.
 
+SELECT	DISTINCT customer_id, 
+		COUNT (*) OVER (PARTITION BY customer_id) customer_orders,
+		COUNT (order_id) OVER () total_orders
+FROM	sales.orders;
