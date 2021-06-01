@@ -94,3 +94,18 @@ SELECT	DISTINCT customer_id,
 		COUNT (*) OVER (PARTITION BY customer_id) customer_orders,
 		COUNT (order_id) OVER () total_orders
 FROM	sales.orders;
+
+-- Sipariþ tablosundaki order_date'leri ascending olacak þekilde sýralayýn
+
+SELECT order_date
+FROM sales.orders
+ORDER BY order_date
+;
+
+-- Her bir sipariþ tarihinin bir önceki ve bir sonraki sipariþ tarihini yukarýdaki tabloya ekleyiniz.
+-- desired output : [order_date, pre_order_date, next_order_date]
+
+SELECT order_date,
+LAG(order_date) OVER(ORDER BY order_date) AS pre_order_date,
+LEAD(order_date) OVER(ORDER BY order_date) AS next_order_date
+FROM sales.orders;
