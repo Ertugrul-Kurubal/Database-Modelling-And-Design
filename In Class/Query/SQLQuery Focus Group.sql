@@ -18,11 +18,12 @@ WHERE A.category_id = B.category_id
 
 WITH T1 AS (
 SELECT TOP 1 *
-
+FROM production.products
+ORDER BY list_price DESC
 )
-SELECT * 
-FROM T1 A, [production].[brands] B
-WHERE A.brand_id = B.brand_id
+SELECT B.brand_name
+FROM T1 A, production.brands B
+WHERE A.brand_id = B.brand_id;
 
 -- En pahalý bisitletten satýn alan müþterileri bulunuz.
 
