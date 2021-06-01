@@ -2,7 +2,19 @@
 
 -- WITH 
 
---En yüksek fiyatlý bisitletin markasý nedir?
+-- 2019da üretilen bisiklet kategorileri nelerdir?
+
+WITH T1 AS (
+SELECT *
+FROM production.products
+WHERE model_year = 2019 
+)
+SELECT DISTINCT B.category_name
+FROM T1 A, production.categories B
+WHERE A.category_id = B.category_id
+;
+
+-- En yüksek fiyatlý bisitletin markasý nedir?
 
 WITH T1 AS (
 SELECT TOP 1 *
