@@ -109,3 +109,53 @@ SELECT order_date,
 LAG(order_date) OVER(ORDER BY order_date) AS pre_order_date,
 LEAD(order_date) OVER(ORDER BY order_date) AS next_order_date
 FROM sales.orders;
+
+-- Her customer_id'nin yanýna sipariþ tarihine göre kendisinden bir sonraki sipariþi veren customer_id'yi yazdýrýnýz
+-- desired output: customer_id, next_customer
+
+SELECT customer_id, order_Date,
+ LEAD(customer_id)	OVER(ORDER BY order_date) AS next_customer_id
+FROM sales.orders
+ORDER BY order_date;
+
+-- RANK, DENSE_RANK VE ROW_NUMBER FONKSÝYONLARININ KARÞILAÞTIRILMASI
+
+-- Sipariþleri order_date'e göre artan þekilde numaralandýrýn (NULL order_date'i ÝÞLEME DAHÝL ETMEYÝNÝZ)
+
+-- ROW NUMBER()
+
+SELECT order_id, order_date,
+	row_number()	OVER(ORDER BY order_date DESC) as number
+FROM sales.orders
+WHERE order_date IS NOT NULL;
+
+-- RANK()
+
+SELECT order_id, order_date,
+	RANK()	OVER(ORDER BY order_date) as number
+FROM sales.orders
+WHERE order_date IS NOT NULL;
+
+--DENSE_RANK()
+
+SELECT	order_id, order_date,
+		DENSE_RANK() OVER (ORDER BY order_date) number
+FROM	sales.orders
+WHERE order_date IS NOT NULL;
+
+-- Yukarýdaki numaralandýrmayý order_status kýrýlýmýna göre yeniden yapýnýz.
+
+SELECT	order_status, order_id, order_date,
+		DENSE_RANK() OVER (PARTITION BY order_status ORDER BY order_date) number
+FROM	sales.orders
+WHERE order_date IS NOT NULL;
+
+with cte as(
+SELECT order_id, order_date,
+DENSE_RANK() over(ORDER BY order_date) [Dense]
+from sales.orders
+where order_date is not Null
+)
+select order_id, order_date, Dense,
+COUNT(*) over (partition by Dense Order By Dense)
+from cte
