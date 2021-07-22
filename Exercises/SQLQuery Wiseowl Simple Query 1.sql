@@ -1,3 +1,4 @@
+-- WORLDEVENTS DATABASE (WISEOWL)
 -- What a way to start
 -- 1)
 /*SELECT EventName, EventDate  FROM [dbo].[tblEvent]
@@ -13,6 +14,12 @@ ORDER BY EventDate
 
 -- Last 3 categories
 -- 3)
-SELECT TOP(3) CategoryID, CategoryName 
+/*SELECT TOP(3) CategoryID, CategoryName 
 FROM [dbo].[tblCategory]
 ORDER BY CategoryName DESC
+*/
+
+-- How times change
+-- 4)
+SELECT TOP(5) EventName AS What, EventDate AS [When] 
+FROM [dbo].[tblEvent]
