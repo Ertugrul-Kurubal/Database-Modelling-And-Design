@@ -133,7 +133,7 @@ WHERE list_price > (SELECT MAX(a.list_price)
 					b.category_name = 'Electric Bikes')
 					ORDER BY list_price DESC;
 
--- Herhangi bir elektrikli bisikletten pahalý olan bisikletleri listelyin.
+-- Herhangi bir elektrikli bisikletten pahalý olan bisikletleri listeleyin.
 -- Ürün adý, model_yýlý ve fiyat bilgilerini yüksek fiyattan düþük fiyata doðru sýralayýnýz.
 
 SELECT product_name, model_year, list_price 
