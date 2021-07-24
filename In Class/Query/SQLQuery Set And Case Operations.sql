@@ -58,7 +58,7 @@ GROUP BY first_name, last_name
 HAVING count(*) = 2
 
 SELECT	store_name     --data type varchar(255) büyük data olaný yukarý yazmak daha mantýklý
-FROM	sales.stores   --ÇÜnkü birleþme iþlemi ilk tablonun adýný alarak oluþuyor eðer isimler farklý ise
+FROM	sales.stores   --Çünkü birleþme iþlemi ilk tablonun adýný alarak oluþuyor eðer isimler farklý ise
 UNION
 SELECT	state          --data type varchar(25)
 FROM	sales.customers
