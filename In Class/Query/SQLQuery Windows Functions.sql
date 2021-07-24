@@ -190,7 +190,7 @@ ORDER BY category_id, list_price
 
 SELECT *,
 		ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY list_price) RN,
-		RANK() OVER(PARTITION BY category_id ORDER BY list_price) R
+		RANK() OVER(PARTITION BY category_id ORDER BY list_price) R -- list_price göre numaralandýrýyor fakat ayný deðerlerde aradaki sayýlarý atlýyor.
 FROM [production].[products]
 ORDER BY category_id, list_price
 
@@ -199,7 +199,7 @@ ORDER BY category_id, list_price
 SELECT *,
 		ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY list_price) RN,
 		RANK() OVER(PARTITION BY category_id ORDER BY list_price) R,
-		DENSE_RANK() OVER(PARTITION BY category_id ORDER BY list_price) DR
+		DENSE_RANK() OVER(PARTITION BY category_id ORDER BY list_price) DR -- list_price göre numaralandýrýyor ve ayný deðerlerde aradaki sayýlarý atlamýyor.
 FROM [production].[products]
 ORDER BY category_id, list_price
 
@@ -209,7 +209,7 @@ SELECT *,
 		ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY list_price) RN,
 		RANK() OVER(PARTITION BY category_id ORDER BY list_price) R,
 		DENSE_RANK() OVER(PARTITION BY category_id ORDER BY list_price) DR,
-		ROUND(CUME_DIST() OVER(PARTITION BY category_id ORDER BY list_price),2) CD
+		ROUND(CUME_DIST() OVER(PARTITION BY category_id ORDER BY list_price),2) CD -- Herbir kategori içinde bisikletierin fiyatlarýna göre bulunduklarý yüzdelik dilimleri yazdýrýyor.
 FROM [production].[products]
 ORDER BY category_id, list_price
 
@@ -220,7 +220,7 @@ SELECT *,
 		RANK() OVER(PARTITION BY category_id ORDER BY list_price) R,
 		DENSE_RANK() OVER(PARTITION BY category_id ORDER BY list_price) DR,
 		ROUND(CUME_DIST() OVER(PARTITION BY category_id ORDER BY list_price),2) CD,
-		ROUND(PERCENT_RANK() OVER(PARTITION BY category_id ORDER BY list_price),2) PR
+		ROUND(PERCENT_RANK() OVER(PARTITION BY category_id ORDER BY list_price),2) PR -- Bir bisiklet diðer bisikletlerin yüzde kaçýndan daha pahalýdýr? Bu yüzdeyi hesaplýyor.
 FROM [production].[products]
 ORDER BY category_id, list_price
 

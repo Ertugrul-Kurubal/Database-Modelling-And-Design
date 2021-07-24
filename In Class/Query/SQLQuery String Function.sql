@@ -54,7 +54,9 @@ SELECT SUBSTRING ('CHARACTER', 3, 5)
 
 SELECT SUBSTRING ('123456789', 3, 5)
 
-SELECT SUBSTRING ('CHARACTER', 0, 3)
+SELECT SUBSTRING ('CHARACTER', 0, 3) -- Sýfýrýncý karakter yok
+
+SELECT SUBSTRING ('CHARACTER', 1, 3)
 
 SELECT SUBSTRING ('CHARACTER', -1, 3)
 
@@ -195,7 +197,8 @@ CASE WHEN phone IS NULL THEN email ELSE phone END contact
 FROM [sales].[customers]
 
 SELECT customer_id, first_name, last_name,
-COALESCE(sales.customers.phone,sales.customers.email) AS contact FROM sales.customers
+COALESCE(sales.customers.phone,sales.customers.email) AS contact FROM sales.customers 
+-- COALESCE yazýlan deðerleri teker teker kontrol ediyor eðer ilk deðer Null ise bir sonrakine geçerek devam ediyor.
 
 --@ iþareti ile mail sütununu ikiye ayýrýn. Örneðin
 --ronna.butler@gmail.com	/ ronna.butler	/ gmail.com
