@@ -10,7 +10,7 @@ HAVING Count(product_id) > 1
 
 --Maximum list price 4000'in üzerinde veya 500'den az olan ürünleri getiriniz.
 
-SELECT b.category_id, MAX(a.list_price) AS  FROM [production].[products] a,
+SELECT b.category_id, MAX(a.list_price) AS max_price FROM [production].[products] a,
 [production].[categories] b 
 WHERE a.category_id = b.category_id AND (a.list_price > 4000 OR a.list_price <500)
 
