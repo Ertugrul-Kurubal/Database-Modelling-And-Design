@@ -8,5 +8,7 @@ SELECT e.EventName, e.EventDate,
 FROM tblEvent AS e
 WHERE CHARINDEX('this', e.EventDetails, 1) > 1 AND
 CHARINDEX('that', e.EventDetails, 1) > 1 AND
+(
 (CHARINDEX('that',e.EventDetails,1) - CHARINDEX('this',e.EventDetails,1)) > 1
+)
 
