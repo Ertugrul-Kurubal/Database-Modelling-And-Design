@@ -7,3 +7,4 @@ FROM tblAuthor AS aut INNER JOIN tblEpisode AS eps ON aut.AuthorId = eps.AuthorI
 					  INNER JOIN tblEpisodeEnemy AS eenm ON eenm.EpisodeId = eps.EpisodeId
 					  INNER JOIN tblEnemy AS enm ON enm.EnemyId = eenm.EnemyId
 WHERE (LEN(aut.AuthorName) + LEN(eps.Title) + LEN(doc.DoctorName) + LEN(enm.EnemyName)) < 40
+ORDER BY eps.EpisodeNumber ASC
