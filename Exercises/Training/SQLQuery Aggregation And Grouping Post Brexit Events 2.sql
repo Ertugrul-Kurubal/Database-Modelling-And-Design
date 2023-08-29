@@ -10,3 +10,5 @@ WHERE ct.ContinentName != 'Europe'
 GROUP BY ct.ContinentName, c.CountryName
 HAVING COUNT(*) >= 5
 ORDER BY 'Number of events' DESC
+
+-- A thought: you should just have used every one of the SFWGHO letters!
