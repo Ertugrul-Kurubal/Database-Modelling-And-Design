@@ -1,5 +1,6 @@
 -- Create a stored procedure to list Dr Who episodes by frequency in two ways
 
+/*
 CREATE PROC spSummariseEpisodes
 AS
 SELECT TOP(3) c.CompanionName, COUNT(*) AS 'Episodes'
@@ -15,6 +16,7 @@ GROUP BY en.EnemyName
 ORDER BY 'Episodes' DESC
 
 EXEC spSummariseEpisodes
+*/
 
 ALTER PROC spSummariseEpisodes
 AS
