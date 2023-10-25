@@ -19,6 +19,7 @@ WHERE
 ORDER BY
 	e.EventDate
 
+-- Run after create proc 
 
 EXEC uspCategoryEvents @CategoryName='death', @After='19900101'
 
