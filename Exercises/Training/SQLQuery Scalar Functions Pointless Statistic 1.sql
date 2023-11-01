@@ -18,6 +18,14 @@ GO
 
 -------------------------------------------------------------------
 
+-- this should return the number 7 (4 + 3)
+
+SELECT dbo.LetterCount('Wise','Owl')
+
+AS 'Number of letters'
+
+-------------------------------------------------------------------
+
 SELECT
 	e.EventName,
 	e.EventDetails,
