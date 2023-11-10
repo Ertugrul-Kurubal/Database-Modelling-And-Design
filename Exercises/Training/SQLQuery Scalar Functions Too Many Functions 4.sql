@@ -2,7 +2,7 @@
 USE DoctorWho
 GO
 
-CREATE FUNCTION fnNumberCompanions(@EpisodeId INT)
+CREATE FUNCTION fnNumberCompanions(@EpisodeId INT) -- ALTER
 RETURNS INT
 AS 
 BEGIN
@@ -15,7 +15,7 @@ BEGIN
 END
 GO
 
-CREATE FUNCTION fnNumberEnemies(@EpisodeId INT)
+CREATE FUNCTION fnNumberEnemies(@EpisodeId INT) -- ALTER
 RETURNS INT
 AS 
 BEGIN
@@ -28,7 +28,7 @@ BEGIN
 END
 GO
 
-CREATE FUNCTION fnWords(@string VARCHAR(MAX)
+CREATE FUNCTION fnWords(@string VARCHAR(MAX) -- ALTER
 )
 RETURNS INT
 AS
