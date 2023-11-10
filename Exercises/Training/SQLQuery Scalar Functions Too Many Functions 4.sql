@@ -25,3 +25,33 @@ BEGIN
 			)
 END
 GO
+
+
+
+
+
+
+
+
+---------------------------------------------------------------
+
+SELECT
+	EpisodeId, 
+	Title,
+
+	-- function to count number of companions for a given episode
+	dbo.fnNumberCompanions(EpisodeId) AS Companions,
+
+	-- function to count the number of enemies for an episode
+	dbo.fnNumberEnemies(EpisodeId) AS Enemies,
+
+	-- function to count the number of words (hint: use a combination
+	-- of LTRIM and RTRIM to remove leading and trailing spaces, then
+	-- REPLACE to change all spaces to empty strings and compare the 
+	-- LEN of the string before and after this change!)
+	dbo.fnWords(Title) AS Words
+
+FROM 
+	tblEpisode
+ORDER BY 
+	Words DESC
