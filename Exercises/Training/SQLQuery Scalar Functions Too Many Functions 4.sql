@@ -11,6 +11,7 @@ BEGIN
 			FROM tblEpisodeCompanion
 			WHERE EpisodeId = @EpisodeId
 			)
+
 END
 GO
 
@@ -23,15 +24,30 @@ BEGIN
 			FROM tblEpisodeEnemy
 			WHERE EpisodeId = @EpisodeId
 			)
+
 END
 GO
 
+CREATE FUNCTION fnWords(@string VARCHAR(MAX)
+)
+RETURNS INT
+AS
+BEGIN
 
+	DECLARE @string2 VARCHAR(MAX) 
 
+	SET @string2 = LTRIM(RTRIM(@string))
 
+	DECLARE @WithSpaces INT
+	DECLARE @withoutSpaces INT
 
+	SET @WithSpaces = LEN(@string2)
+	SET @WithoutSpaces = LEN(REPLACE(@string2,' ',''))
 
+	RETURN @WithSpaces - @WithoutSpaces + 1
 
+END
+GO
 
 ---------------------------------------------------------------
 
